@@ -1,0 +1,4 @@
+use mygis;
+ALTER TABLE roads 
+ADD COLUMN camera_link VARCHAR(500) DEFAULT NULL,
+ADD COLUMN camera_coords VARCHAR(100) DEFAULT NULL;

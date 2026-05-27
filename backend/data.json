@@ -1,0 +1,1836 @@
+{
+  "type": "FeatureCollection",
+  "generator": "overpass-turbo",
+  "copyright": "The data included in this document is from www.openstreetmap.org. The data is made available under ODbL.",
+  "timestamp": "2026-04-16T17:14:33Z",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/295128790",
+        "bicycle:lanes": "no|no|yes",
+        "highway": "primary",
+        "lanes": "3",
+        "moped:lanes": "no|yes|yes",
+        "motor_vehicle:lanes": "yes|yes|no",
+        "motorcycle:lanes": "no|yes|yes",
+        "name": "Đường Nguyễn Văn Linh",
+        "oneway": "yes",
+        "surface": "asphalt"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            108.2182946,
+            16.0607868
+          ],
+          [
+            108.2184589,
+            16.0607964
+          ],
+          [
+            108.2188252,
+            16.0608177
+          ],
+          [
+            108.2193707,
+            16.0608494
+          ],
+          [
+            108.2195224,
+            16.0608582
+          ],
+          [
+            108.2196618,
+            16.0608635
+          ],
+          [
+            108.2200176,
+            16.060877
+          ],
+          [
+            108.2208494,
+            16.0609085
+          ],
+          [
+            108.2210471,
+            16.060914
+          ],
+          [
+            108.2212543,
+            16.0609197
+          ],
+          [
+            108.2218217,
+            16.0609354
+          ],
+          [
+            108.2218806,
+            16.0609363
+          ],
+          [
+            108.2224284,
+            16.0609444
+          ],
+          [
+            108.2229334,
+            16.0609519
+          ],
+          [
+            108.2231424,
+            16.0609547
+          ]
+        ]
+      },
+      "id": "way/295128790"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/295394151",
+        "highway": "tertiary",
+        "lanes": "3",
+        "name": "Đường Nguyễn Văn Linh",
+        "oneway": "yes",
+        "surface": "asphalt"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            108.2038002,
+            16.0578617
+          ],
+          [
+            108.2038602,
+            16.0579193
+          ],
+          [
+            108.2039086,
+            16.0579598
+          ],
+          [
+            108.2040213,
+            16.057997
+          ],
+          [
+            108.2044307,
+            16.0581322
+          ]
+        ]
+      },
+      "id": "way/295394151"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/295394152",
+        "highway": "tertiary",
+        "lanes": "3",
+        "name": "Đường Nguyễn Văn Linh",
+        "oneway": "yes",
+        "surface": "asphalt"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            108.2056277,
+            16.058638
+          ],
+          [
+            108.2054324,
+            16.0585706
+          ],
+          [
+            108.204388,
+            16.0582444
+          ],
+          [
+            108.2043767,
+            16.0582408
+          ]
+        ]
+      },
+      "id": "way/295394152"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/295449625",
+        "bicycle:lanes": "no|no|yes",
+        "highway": "primary",
+        "lanes": "3",
+        "moped:lanes": "no|yes|yes",
+        "motor_vehicle:lanes": "yes|yes|no",
+        "motorcycle:lanes": "no|yes|yes",
+        "name": "Đường Nguyễn Văn Linh",
+        "oneway": "yes",
+        "surface": "asphalt",
+        "vehicle:lanes": "yes|yes|no"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            108.2094218,
+            16.0597313
+          ],
+          [
+            108.2093153,
+            16.0597152
+          ],
+          [
+            108.2088214,
+            16.0596408
+          ],
+          [
+            108.2085917,
+            16.0595947
+          ],
+          [
+            108.2084683,
+            16.0595676
+          ],
+          [
+            108.2083275,
+            16.0595302
+          ],
+          [
+            108.2081264,
+            16.0594682
+          ],
+          [
+            108.2080937,
+            16.0594581
+          ],
+          [
+            108.2078929,
+            16.0593921
+          ],
+          [
+            108.2074999,
+            16.0592652
+          ],
+          [
+            108.2074689,
+            16.0592552
+          ],
+          [
+            108.2073562,
+            16.0592167
+          ],
+          [
+            108.2065476,
+            16.0589407
+          ]
+        ]
+      },
+      "id": "way/295449625"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/295449627",
+        "bicycle:lanes": "no|no|yes",
+        "highway": "primary",
+        "lanes": "3",
+        "moped:lanes": "no|yes|yes",
+        "motor_vehicle:lanes": "yes|yes|no",
+        "motorcycle:lanes": "no|yes|yes",
+        "name": "Đường Nguyễn Văn Linh",
+        "oneway": "yes",
+        "surface": "asphalt"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            108.2120813,
+            16.0600277
+          ],
+          [
+            108.2121277,
+            16.0600353
+          ],
+          [
+            108.2124984,
+            16.0600934
+          ],
+          [
+            108.2129891,
+            16.0601597
+          ],
+          [
+            108.2134732,
+            16.0602223
+          ],
+          [
+            108.2135789,
+            16.060236
+          ],
+          [
+            108.2136695,
+            16.0602491
+          ],
+          [
+            108.2143014,
+            16.0603416
+          ],
+          [
+            108.2143737,
+            16.0603516
+          ],
+          [
+            108.2150963,
+            16.0604597
+          ],
+          [
+            108.2154434,
+            16.0605074
+          ]
+        ]
+      },
+      "id": "way/295449627"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/642076108",
+        "alt_name": "Kiệt 385",
+        "highway": "service",
+        "maxspeed": "50",
+        "name": "Đường Nguyễn Văn Linh",
+        "service": "alley",
+        "surface": "asphalt"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            108.2075338,
+            16.0581961
+          ],
+          [
+            108.2076704,
+            16.0582138
+          ],
+          [
+            108.2078176,
+            16.0582369
+          ],
+          [
+            108.2081833,
+            16.0582578
+          ]
+        ]
+      },
+      "id": "way/642076108"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/693885802",
+        "bicycle:lanes": "no|no|yes",
+        "highway": "primary",
+        "lanes": "3",
+        "moped:lanes": "no|yes|yes",
+        "motor_vehicle:lanes": "yes|yes|no",
+        "motorcycle:lanes": "no|yes|yes",
+        "name": "Đường Nguyễn Văn Linh",
+        "oneway": "yes",
+        "surface": "asphalt"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            108.2229346,
+            16.061089
+          ],
+          [
+            108.2224237,
+            16.0610646
+          ],
+          [
+            108.222338,
+            16.0610605
+          ],
+          [
+            108.2220944,
+            16.0610489
+          ],
+          [
+            108.2219698,
+            16.0610429
+          ],
+          [
+            108.2218297,
+            16.0610381
+          ],
+          [
+            108.2217784,
+            16.0610364
+          ]
+        ]
+      },
+      "id": "way/693885802"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/693885804",
+        "highway": "primary",
+        "lanes": "5",
+        "name": "Đường Nguyễn Văn Linh",
+        "oneway": "yes",
+        "surface": "asphalt",
+        "turn:lanes": "|||right|right"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            108.2231424,
+            16.0609547
+          ],
+          [
+            108.2232639,
+            16.0609572
+          ],
+          [
+            108.2237378,
+            16.0609684
+          ],
+          [
+            108.2238027,
+            16.0609711
+          ]
+        ]
+      },
+      "id": "way/693885804"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/694767769",
+        "highway": "primary",
+        "lanes": "3",
+        "name": "Đường Nguyễn Văn Linh",
+        "oneway": "yes",
+        "surface": "asphalt"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            108.2060261,
+            16.0586127
+          ],
+          [
+            108.2061524,
+            16.0586536
+          ]
+        ]
+      },
+      "id": "way/694767769"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/694830395",
+        "highway": "primary",
+        "lanes": "3",
+        "name": "Đường Nguyễn Văn Linh",
+        "oneway": "yes",
+        "surface": "asphalt"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            108.224246,
+            16.0611315
+          ],
+          [
+            108.2241216,
+            16.061126
+          ],
+          [
+            108.224002,
+            16.0611284
+          ]
+        ]
+      },
+      "id": "way/694830395"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/694830397",
+        "highway": "primary",
+        "lanes": "3",
+        "name": "Đường Nguyễn Văn Linh",
+        "oneway": "yes",
+        "surface": "asphalt",
+        "turn:lanes": "through|through|right"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            108.2243422,
+            16.0611364
+          ],
+          [
+            108.224246,
+            16.0611315
+          ]
+        ]
+      },
+      "id": "way/694830397"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/695025559",
+        "bicycle:lanes": "no|no|yes",
+        "highway": "primary",
+        "lanes": "3",
+        "moped:lanes": "no|yes|yes",
+        "motor_vehicle:lanes": "yes|yes|no",
+        "motorcycle:lanes": "no|yes|yes",
+        "name": "Đường Nguyễn Văn Linh",
+        "oneway": "yes",
+        "surface": "asphalt"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            108.2231488,
+            16.0611012
+          ],
+          [
+            108.2229346,
+            16.061089
+          ]
+        ]
+      },
+      "id": "way/695025559"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/695025562",
+        "highway": "primary",
+        "lanes": "4",
+        "name": "Đường Nguyễn Văn Linh",
+        "oneway": "yes",
+        "surface": "asphalt",
+        "turn:lanes": "left;through|through|through|through"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            108.2238035,
+            16.061121
+          ],
+          [
+            108.2232633,
+            16.0611042
+          ],
+          [
+            108.2231488,
+            16.0611012
+          ]
+        ]
+      },
+      "id": "way/695025562"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/695030266",
+        "bicycle:lanes": "no|no|yes",
+        "highway": "primary",
+        "lanes": "3",
+        "moped:lanes": "no|yes|yes",
+        "motor_vehicle:lanes": "yes|yes|no",
+        "motorcycle:lanes": "no|yes|yes",
+        "name": "Đường Nguyễn Văn Linh",
+        "oneway": "yes",
+        "surface": "asphalt"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            108.2217784,
+            16.0610364
+          ],
+          [
+            108.2212515,
+            16.0610184
+          ],
+          [
+            108.2208252,
+            16.0610038
+          ],
+          [
+            108.2198509,
+            16.0609797
+          ]
+        ]
+      },
+      "id": "way/695030266"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/695033474",
+        "bicycle:lanes": "no|no|yes",
+        "highway": "primary",
+        "lanes": "3",
+        "moped:lanes": "no|yes|yes",
+        "motor_vehicle:lanes": "yes|yes|no",
+        "motorcycle:lanes": "no|yes|yes",
+        "name": "Đường Nguyễn Văn Linh",
+        "oneway": "yes",
+        "surface": "asphalt",
+        "turn:lanes": "left;through|through|through"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            108.2198509,
+            16.0609797
+          ],
+          [
+            108.2196618,
+            16.060975
+          ],
+          [
+            108.2195454,
+            16.0609721
+          ]
+        ]
+      },
+      "id": "way/695033474"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/695040105",
+        "bicycle:lanes": "no|no|yes",
+        "highway": "primary",
+        "lanes": "3",
+        "moped:lanes": "no|yes|yes",
+        "motor_vehicle:lanes": "yes|yes|no",
+        "motorcycle:lanes": "no|yes|yes",
+        "name": "Đường Nguyễn Văn Linh",
+        "oneway": "yes",
+        "surface": "asphalt"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            108.2195454,
+            16.0609721
+          ],
+          [
+            108.219364,
+            16.0609594
+          ],
+          [
+            108.2191435,
+            16.0609441
+          ],
+          [
+            108.2189361,
+            16.0609312
+          ],
+          [
+            108.2184548,
+            16.0609063
+          ],
+          [
+            108.2183036,
+            16.0608985
+          ],
+          [
+            108.2176855,
+            16.0608664
+          ]
+        ]
+      },
+      "id": "way/695040105"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/695040552",
+        "bicycle:lanes": "no|no|yes",
+        "highway": "primary",
+        "lanes": "3",
+        "moped:lanes": "no|yes|yes",
+        "motor_vehicle:lanes": "yes|yes|no",
+        "motorcycle:lanes": "no|yes|yes",
+        "name": "Đường Nguyễn Văn Linh",
+        "oneway": "yes",
+        "surface": "asphalt",
+        "turn:lanes": "through|through|right"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            108.2176855,
+            16.0608664
+          ],
+          [
+            108.2173042,
+            16.0608459
+          ],
+          [
+            108.2171774,
+            16.0608376
+          ],
+          [
+            108.217128,
+            16.0608344
+          ]
+        ]
+      },
+      "id": "way/695040552"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/695446624",
+        "bicycle:lanes": "no|no|yes",
+        "highway": "primary",
+        "lanes": "3",
+        "moped:lanes": "no|yes|yes",
+        "motor_vehicle:lanes": "yes|yes|no",
+        "motorcycle:lanes": "no|yes|yes",
+        "name": "Đường Nguyễn Văn Linh",
+        "oneway": "yes",
+        "surface": "asphalt",
+        "turn:lanes": "left;through|through|right",
+        "vehicle:lanes": "yes|yes|no"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            108.2115259,
+            16.0600397
+          ],
+          [
+            108.2112823,
+            16.0600026
+          ],
+          [
+            108.211125,
+            16.0599787
+          ]
+        ]
+      },
+      "id": "way/695446624"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/695446625",
+        "bicycle:lanes": "no|no|yes",
+        "highway": "primary",
+        "lanes": "3",
+        "moped:lanes": "no|yes|yes",
+        "motor_vehicle:lanes": "yes|yes|no",
+        "motorcycle:lanes": "no|yes|yes",
+        "name": "Đường Nguyễn Văn Linh",
+        "oneway": "yes",
+        "surface": "asphalt"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            108.2135954,
+            16.0603373
+          ],
+          [
+            108.2134636,
+            16.0603191
+          ],
+          [
+            108.2124742,
+            16.0601849
+          ],
+          [
+            108.2121131,
+            16.0601292
+          ],
+          [
+            108.2120652,
+            16.0601218
+          ],
+          [
+            108.2119883,
+            16.0601101
+          ],
+          [
+            108.2115259,
+            16.0600397
+          ]
+        ]
+      },
+      "id": "way/695446625"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/695490086",
+        "bicycle:lanes": "no|no|yes",
+        "highway": "primary",
+        "lanes": "3",
+        "moped:lanes": "no|yes|yes",
+        "motor_vehicle:lanes": "yes|yes|no",
+        "motorcycle:lanes": "no|yes|yes",
+        "name": "Đường Nguyễn Văn Linh",
+        "oneway": "yes",
+        "surface": "asphalt",
+        "turn:lanes": "left;through|through|through;right",
+        "vehicle:lanes": "yes|yes|no"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            108.2098516,
+            16.0597885
+          ],
+          [
+            108.2095079,
+            16.0597428
+          ],
+          [
+            108.2094218,
+            16.0597313
+          ]
+        ]
+      },
+      "id": "way/695490086"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/695490087",
+        "bicycle:lanes": "no|no|yes",
+        "highway": "primary",
+        "lanes": "3",
+        "moped:lanes": "no|yes|yes",
+        "motor_vehicle:lanes": "yes|yes|no",
+        "motorcycle:lanes": "no|yes|yes",
+        "name": "Đường Nguyễn Văn Linh",
+        "oneway": "yes",
+        "surface": "asphalt",
+        "vehicle:lanes": "yes|yes|no"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            108.211125,
+            16.0599787
+          ],
+          [
+            108.2108929,
+            16.0599423
+          ],
+          [
+            108.2102861,
+            16.059847
+          ],
+          [
+            108.2098516,
+            16.0597885
+          ]
+        ]
+      },
+      "id": "way/695490087"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/695496039",
+        "highway": "primary",
+        "lanes": "4",
+        "name": "Đường Nguyễn Văn Linh",
+        "oneway": "yes",
+        "surface": "asphalt"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            108.2061524,
+            16.0586536
+          ],
+          [
+            108.2062265,
+            16.0586842
+          ],
+          [
+            108.206308,
+            16.0587168
+          ],
+          [
+            108.2064476,
+            16.0587715
+          ],
+          [
+            108.2065446,
+            16.058809
+          ],
+          [
+            108.2068141,
+            16.0589075
+          ]
+        ]
+      },
+      "id": "way/695496039"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/695496040",
+        "highway": "primary",
+        "lanes": "3",
+        "name": "Đường Nguyễn Văn Linh",
+        "oneway": "yes",
+        "surface": "asphalt",
+        "turn:lanes": "left|left;through|through"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            108.2060965,
+            16.0587976
+          ],
+          [
+            108.2059725,
+            16.0587563
+          ]
+        ]
+      },
+      "id": "way/695496040"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/695496042",
+        "bicycle:lanes": "no|no|yes",
+        "highway": "primary",
+        "lanes": "3",
+        "moped:lanes": "no|yes|yes",
+        "motor_vehicle:lanes": "yes|yes|no",
+        "motorcycle:lanes": "no|yes|yes",
+        "name": "Đường Nguyễn Văn Linh",
+        "oneway": "yes",
+        "surface": "asphalt",
+        "turn:lanes": "left|left;through|through",
+        "vehicle:lanes": "yes|yes|no"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            108.2065476,
+            16.0589407
+          ],
+          [
+            108.2061948,
+            16.0588233
+          ],
+          [
+            108.2061732,
+            16.0588177
+          ],
+          [
+            108.2060965,
+            16.0587976
+          ]
+        ]
+      },
+      "id": "way/695496042"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/695502611",
+        "bicycle:lanes": "no|no|yes",
+        "highway": "primary",
+        "lanes": "3",
+        "motor_vehicle:lanes": "yes|yes|no",
+        "motorcycle:lanes": "no|yes|yes",
+        "name": "Đường Nguyễn Văn Linh",
+        "oneway": "yes",
+        "surface": "asphalt",
+        "turn:lanes": "left;through|through|through;right"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            108.2091717,
+            16.0595994
+          ],
+          [
+            108.2093288,
+            16.0596195
+          ],
+          [
+            108.2094339,
+            16.059633
+          ]
+        ]
+      },
+      "id": "way/695502611"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/695502612",
+        "bicycle:lanes": "no|no|yes",
+        "highway": "primary",
+        "lanes": "3",
+        "motor_vehicle:lanes": "yes|yes|no",
+        "motorcycle:lanes": "no|yes|yes",
+        "name": "Đường Nguyễn Văn Linh",
+        "oneway": "yes",
+        "surface": "asphalt"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            108.2075054,
+            16.0591591
+          ],
+          [
+            108.2075342,
+            16.0591688
+          ],
+          [
+            108.2081273,
+            16.0593697
+          ],
+          [
+            108.2081579,
+            16.0593797
+          ],
+          [
+            108.2083516,
+            16.0594426
+          ],
+          [
+            108.2085023,
+            16.0594814
+          ],
+          [
+            108.2086262,
+            16.0595086
+          ],
+          [
+            108.2087678,
+            16.0595375
+          ],
+          [
+            108.2090597,
+            16.0595851
+          ],
+          [
+            108.2091717,
+            16.0595994
+          ]
+        ]
+      },
+      "id": "way/695502612"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/695502613",
+        "bicycle:lanes": "no|no|yes",
+        "highway": "primary",
+        "lanes": "3",
+        "motor_vehicle:lanes": "yes|yes|no",
+        "motorcycle:lanes": "no|yes|yes",
+        "name": "Đường Nguyễn Văn Linh",
+        "oneway": "yes",
+        "surface": "asphalt",
+        "turn:lanes": "left;through|through|"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            108.2072813,
+            16.0590784
+          ],
+          [
+            108.2075054,
+            16.0591591
+          ]
+        ]
+      },
+      "id": "way/695502613"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/695502614",
+        "bicycle:lanes": "no|no|yes",
+        "highway": "primary",
+        "lanes": "3",
+        "motor_vehicle:lanes": "yes|yes|no",
+        "motorcycle:lanes": "no|yes|yes",
+        "name": "Đường Nguyễn Văn Linh",
+        "oneway": "yes",
+        "surface": "asphalt"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            108.2068141,
+            16.0589075
+          ],
+          [
+            108.2072813,
+            16.0590784
+          ]
+        ]
+      },
+      "id": "way/695502614"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/695504113",
+        "bicycle:lanes": "no|no|yes",
+        "highway": "primary",
+        "lanes": "3",
+        "motor_vehicle:lanes": "yes|yes|no",
+        "motorcycle:lanes": "no|yes|yes",
+        "name": "Đường Nguyễn Văn Linh",
+        "oneway": "yes",
+        "surface": "asphalt",
+        "turn:lanes": "left;through|through;right|"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            108.2117792,
+            16.0599776
+          ],
+          [
+            108.2120023,
+            16.0600146
+          ],
+          [
+            108.2120813,
+            16.0600277
+          ]
+        ]
+      },
+      "id": "way/695504113"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/695504114",
+        "bicycle:lanes": "no|no|yes",
+        "highway": "primary",
+        "lanes": "3",
+        "motor_vehicle:lanes": "yes|yes|no",
+        "motorcycle:lanes": "no|yes|yes",
+        "name": "Đường Nguyễn Văn Linh",
+        "oneway": "yes",
+        "surface": "asphalt"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            108.2094339,
+            16.059633
+          ],
+          [
+            108.2095211,
+            16.0596444
+          ],
+          [
+            108.2103038,
+            16.0597467
+          ],
+          [
+            108.2109052,
+            16.0598366
+          ],
+          [
+            108.2111398,
+            16.0598717
+          ],
+          [
+            108.2112964,
+            16.0598976
+          ],
+          [
+            108.2117792,
+            16.0599776
+          ]
+        ]
+      },
+      "id": "way/695504114"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/695506825",
+        "bicycle:lanes": "no|no|yes",
+        "highway": "primary",
+        "lanes": "3",
+        "moped:lanes": "no|yes|yes",
+        "motor_vehicle:lanes": "yes|yes|no",
+        "motorcycle:lanes": "no|yes|yes",
+        "name": "Đường Nguyễn Văn Linh",
+        "oneway": "yes",
+        "surface": "asphalt",
+        "turn:lanes": "left;through|through|"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            108.2154434,
+            16.0605074
+          ],
+          [
+            108.2156313,
+            16.0605333
+          ],
+          [
+            108.2156967,
+            16.0605425
+          ]
+        ]
+      },
+      "id": "way/695506825"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/695506826",
+        "bicycle:lanes": "no|no|yes",
+        "highway": "primary",
+        "lanes": "3",
+        "moped:lanes": "no|yes|yes",
+        "motor_vehicle:lanes": "yes|yes|no",
+        "motorcycle:lanes": "no|yes|yes",
+        "name": "Đường Nguyễn Văn Linh",
+        "oneway": "yes",
+        "surface": "asphalt"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            108.2156967,
+            16.0605425
+          ],
+          [
+            108.215743,
+            16.060549
+          ],
+          [
+            108.2160884,
+            16.0605974
+          ],
+          [
+            108.216412,
+            16.0606387
+          ],
+          [
+            108.2164801,
+            16.0606474
+          ],
+          [
+            108.2165148,
+            16.0606504
+          ]
+        ]
+      },
+      "id": "way/695506826"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/695510005",
+        "bicycle:lanes": "no|no|yes",
+        "highway": "primary",
+        "lanes": "3",
+        "moped:lanes": "no|yes|yes",
+        "motor_vehicle:lanes": "yes|yes|no",
+        "motorcycle:lanes": "no|yes|yes",
+        "name": "Đường Nguyễn Văn Linh",
+        "oneway": "yes",
+        "surface": "asphalt"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            108.2173585,
+            16.0607308
+          ],
+          [
+            108.2173893,
+            16.0607326
+          ],
+          [
+            108.2179085,
+            16.0607637
+          ]
+        ]
+      },
+      "id": "way/695510005"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/695510006",
+        "bicycle:lanes": "no|no|yes",
+        "highway": "primary",
+        "lanes": "3",
+        "moped:lanes": "no|yes|yes",
+        "motor_vehicle:lanes": "yes|yes|no",
+        "motorcycle:lanes": "no|yes|yes",
+        "name": "Đường Nguyễn Văn Linh",
+        "oneway": "yes",
+        "surface": "asphalt",
+        "turn:lanes": "left;through|through|"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            108.2179085,
+            16.0607637
+          ],
+          [
+            108.2181143,
+            16.060776
+          ],
+          [
+            108.2182946,
+            16.0607868
+          ]
+        ]
+      },
+      "id": "way/695510006"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/695510007",
+        "bicycle:lanes": "no|no|yes",
+        "destination:en": "Cham Museum",
+        "highway": "primary",
+        "lanes": "3",
+        "moped:lanes": "no|yes|yes",
+        "motor_vehicle:lanes": "yes|yes|no",
+        "motorcycle:lanes": "no|yes|yes",
+        "name": "Đường Nguyễn Văn Linh",
+        "oneway": "yes",
+        "surface": "asphalt"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            108.2171196,
+            16.0606903
+          ],
+          [
+            108.2173022,
+            16.0607231
+          ],
+          [
+            108.2173585,
+            16.0607308
+          ]
+        ]
+      },
+      "id": "way/695510007"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/695511484",
+        "highway": "primary",
+        "lanes": "3",
+        "name": "Đường Nguyễn Văn Linh",
+        "oneway": "yes",
+        "surface": "asphalt"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            108.2238027,
+            16.0609711
+          ],
+          [
+            108.2239574,
+            16.0609739
+          ]
+        ]
+      },
+      "id": "way/695511484"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/696168833",
+        "bicycle:lanes": "no|no|yes",
+        "highway": "primary",
+        "lanes": "3",
+        "moped:lanes": "no|yes|yes",
+        "motor_vehicle:lanes": "yes|yes|no",
+        "motorcycle:lanes": "no|yes|yes",
+        "name": "Đường Nguyễn Văn Linh",
+        "oneway": "yes",
+        "surface": "asphalt",
+        "turn:lanes": "left;through|through|through"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            108.2145767,
+            16.0604733
+          ],
+          [
+            108.2143597,
+            16.0604416
+          ],
+          [
+            108.2142854,
+            16.0604317
+          ]
+        ]
+      },
+      "id": "way/696168833"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/696168834",
+        "bicycle:lanes": "no|no|yes",
+        "highway": "primary",
+        "lanes": "3",
+        "moped:lanes": "no|yes|yes",
+        "motor_vehicle:lanes": "yes|yes|no",
+        "motorcycle:lanes": "no|yes|yes",
+        "name": "Đường Nguyễn Văn Linh",
+        "oneway": "yes",
+        "surface": "asphalt"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            108.2168646,
+            16.0608053
+          ],
+          [
+            108.216747,
+            16.0607856
+          ],
+          [
+            108.2166923,
+            16.0607765
+          ],
+          [
+            108.2166091,
+            16.0607647
+          ],
+          [
+            108.2161547,
+            16.0607084
+          ],
+          [
+            108.2157282,
+            16.0606493
+          ],
+          [
+            108.2156841,
+            16.0606426
+          ],
+          [
+            108.2151489,
+            16.0605601
+          ],
+          [
+            108.2145767,
+            16.0604733
+          ]
+        ]
+      },
+      "id": "way/696168834"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/696169687",
+        "bicycle:lanes": "no|no|yes",
+        "highway": "primary",
+        "lanes": "3",
+        "moped:lanes": "no|yes|yes",
+        "motor_vehicle:lanes": "yes|yes|no",
+        "motorcycle:lanes": "no|yes|yes",
+        "name": "Đường Nguyễn Văn Linh",
+        "oneway": "yes",
+        "surface": "asphalt",
+        "turn:lanes": "left;through|through|through;right"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            108.213857,
+            16.060372
+          ],
+          [
+            108.2136597,
+            16.0603456
+          ],
+          [
+            108.2135954,
+            16.0603373
+          ]
+        ]
+      },
+      "id": "way/696169687"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/696169688",
+        "bicycle:lanes": "no|no|yes",
+        "highway": "primary",
+        "lanes": "3",
+        "moped:lanes": "no|yes|yes",
+        "motor_vehicle:lanes": "yes|yes|no",
+        "motorcycle:lanes": "no|yes|yes",
+        "name": "Đường Nguyễn Văn Linh",
+        "oneway": "yes",
+        "surface": "asphalt"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            108.2142854,
+            16.0604317
+          ],
+          [
+            108.213857,
+            16.060372
+          ]
+        ]
+      },
+      "id": "way/696169688"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/698046188",
+        "bicycle:lanes": "no|no|yes",
+        "highway": "primary",
+        "lanes": "3",
+        "moped:lanes": "no|yes|yes",
+        "motor_vehicle:lanes": "yes|yes|no",
+        "motorcycle:lanes": "no|yes|yes",
+        "name": "Đường Nguyễn Văn Linh",
+        "oneway": "yes",
+        "surface": "asphalt"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            108.2165148,
+            16.0606504
+          ],
+          [
+            108.2167309,
+            16.060669
+          ],
+          [
+            108.2167617,
+            16.0606706
+          ],
+          [
+            108.2169122,
+            16.0606624
+          ]
+        ]
+      },
+      "id": "way/698046188"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/779462187",
+        "highway": "primary",
+        "lanes": "3",
+        "name": "Đường Nguyễn Văn Linh",
+        "oneway": "yes",
+        "surface": "asphalt"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            108.2239574,
+            16.0609739
+          ],
+          [
+            108.224258,
+            16.0609791
+          ],
+          [
+            108.224349,
+            16.0609809
+          ]
+        ]
+      },
+      "id": "way/779462187"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/1160165351",
+        "alt_name": "Kiệt 385",
+        "highway": "service",
+        "maxspeed": "50",
+        "name": "Đường Nguyễn Văn Linh",
+        "service": "alley",
+        "surface": "asphalt"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            108.20826,
+            16.0583019
+          ],
+          [
+            108.2082522,
+            16.0584374
+          ],
+          [
+            108.2082369,
+            16.0588082
+          ]
+        ]
+      },
+      "id": "way/1160165351"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/1280219257",
+        "highway": "tertiary",
+        "lanes": "3",
+        "name": "Đường Nguyễn Văn Linh",
+        "oneway": "yes",
+        "surface": "asphalt"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            108.2055371,
+            16.0584798
+          ],
+          [
+            108.2059181,
+            16.0585801
+          ],
+          [
+            108.2059485,
+            16.0585877
+          ],
+          [
+            108.2060261,
+            16.0586127
+          ]
+        ]
+      },
+      "id": "way/1280219257"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/1280614485",
+        "highway": "tertiary",
+        "lanes": "3",
+        "name": "Đường Nguyễn Văn Linh",
+        "oneway": "yes",
+        "surface": "asphalt"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            108.2049882,
+            16.0583173
+          ],
+          [
+            108.2055371,
+            16.0584798
+          ]
+        ]
+      },
+      "id": "way/1280614485"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/1280614505",
+        "highway": "tertiary",
+        "lanes": "3",
+        "name": "Đường Nguyễn Văn Linh",
+        "oneway": "yes",
+        "surface": "asphalt"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            108.2059725,
+            16.0587563
+          ],
+          [
+            108.2058981,
+            16.0587297
+          ],
+          [
+            108.2056277,
+            16.058638
+          ]
+        ]
+      },
+      "id": "way/1280614505"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/1282340770",
+        "highway": "tertiary",
+        "lanes": "3",
+        "name": "Đường Nguyễn Văn Linh",
+        "oneway": "yes",
+        "surface": "asphalt"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            108.2043767,
+            16.0582408
+          ],
+          [
+            108.2043578,
+            16.0582349
+          ],
+          [
+            108.203991,
+            16.0581191
+          ],
+          [
+            108.2038673,
+            16.0580858
+          ],
+          [
+            108.2036982,
+            16.0580607
+          ]
+        ]
+      },
+      "id": "way/1282340770"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/1282340772",
+        "highway": "tertiary",
+        "lanes": "3",
+        "name": "Đường Nguyễn Văn Linh",
+        "oneway": "yes",
+        "surface": "asphalt"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            108.2044307,
+            16.0581322
+          ],
+          [
+            108.2049882,
+            16.0583173
+          ]
+        ]
+      },
+      "id": "way/1282340772"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/1430444249",
+        "highway": "primary",
+        "lanes": "4",
+        "name": "Đường Nguyễn Văn Linh",
+        "oneway": "yes",
+        "surface": "asphalt",
+        "turn:lanes": "left;through|through|through|through"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            108.224002,
+            16.0611284
+          ],
+          [
+            108.2238035,
+            16.061121
+          ]
+        ]
+      },
+      "id": "way/1430444249"
+    }
+  ]
+}
