@@ -1,0 +1,62 @@
+B:\GIS Project
+├─mysql.sql
+├─package-lock.json
+├─package.json
+├─YOLO
+|  ├─traffic.mp4
+|  ├─yolo11n.pt
+|  ├─yolo11s.pt
+|  ├─yolo_counter.py
+|  ├─yolo_setup.py
+|  └yolo_simulator.py
+├─frontend
+|    ├─index.html
+|    ├─package-lock.json
+|    ├─package.json
+|    ├─vite.config.js
+|    ├─src
+|    |  ├─App.vue
+|    |  ├─main.js
+|    |  ├─views
+|    |  |   ├─AnalyticsView.vue
+|    |  |   ├─LoginView.vue
+|    |  |   ├─MapDashboard.vue
+|    |  |   ├─ProfileView.vue
+|    |  |   └UserManagement.vue
+|    |  ├─router
+|    |  |   └index.js
+|    |  ├─components
+|    |  |     ├─LayerTools.vue
+|    |  |     ├─MapToolbar.vue
+|    |  |     ├─MapViewer.vue
+|    |  |     └Sidebar.vue
+|    |  ├─assets
+|    |  |   ├─icons
+|    |  |   |   └camera.png
+|    ├─public
+|    |   └IconApp.png
+├─backend
+|    ├─.env
+|    ├─data.json
+|    ├─importData.js
+|    ├─package-lock.json
+|    ├─package.json
+|    ├─src
+|    |  ├─server.js
+|    |  ├─services
+|    |  ├─routes
+|    |  |   ├─authRoutes.js
+|    |  |   ├─cameraRoutes.js
+|    |  |   ├─gisRoutes.js
+|    |  |   ├─trafficRoutes.js
+|    |  |   └userRoutes.js
+|    |  ├─middleware
+|    |  |     └authMiddleware.js
+|    |  ├─controllers
+|    |  |      ├─authController.js
+|    |  |      ├─cameraController.js
+|    |  |      ├─gisController.js
+|    |  |      ├─trafficController.js
+|    |  |      └userController.js
+|    |  ├─config
+|    |  |   └db.js

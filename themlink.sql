@@ -1,4 +1,0 @@
-use mygis;
-ALTER TABLE roads ADD COLUMN geom GEOMETRY;
-
-ALTER TABLE roads MODIFY geom GEOMETRY SRID 4326;

@@ -11,7 +11,7 @@ const routes = [
   { 
     path: '/users', 
     component: UserManagement,
-    meta: { requiresAdmin: true } // Đánh dấu trang này cần quyền Admin
+    meta: { requiresAdmin: true }
   },
   { path: '/profile', component: ProfileView },
   { path: '/analytics', component: AnalyticsView }
@@ -27,13 +27,11 @@ router.beforeEach((to, from, next) => {
   const token = localStorage.getItem('token');
   const role = localStorage.getItem('user_role');
 
-  // 1. Nếu trang yêu cầu Admin mà người dùng không phải Admin
   if (to.meta.requiresAdmin && role !== 'admin') {
     alert("Khu vực hạn chế! Bạn không có quyền truy cập.");
     return next('/map');
   }
 
-  // 2. Nếu chưa đăng nhập mà cố vào các trang Dashboard
   if (to.path !== '/' && !token) {
     return next('/');
   }
