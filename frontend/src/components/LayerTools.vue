@@ -49,6 +49,7 @@ defineEmits(['change-layer'])
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
   min-width: 130px;
   border: 1px solid #ddd;
+  font-family: 'Inter', 'Segoe UI', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
 }
 
 .control-title {

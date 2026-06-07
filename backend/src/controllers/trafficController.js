@@ -200,7 +200,7 @@ export const getTrafficHistory = async (req, res) => {
 };
 
 // ==========================================
-// TỰ ĐỘNG KHÔI PHỤC AI KHI KHỞI ĐỘNG SERVER
+// TỰ ĐỘNG KHÔI PHỤC KHI KHỞI ĐỘNG SERVER
 // ==========================================
 export const autoResumeCameras = async () => {
     try {

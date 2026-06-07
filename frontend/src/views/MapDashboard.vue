@@ -131,7 +131,7 @@ const fetchCameraDashboard = async () => {
   }
 };
 
-// ĐÃ CẬP NHẬT: Hàm dịch 6 trạng thái giao thông khớp với XML GeoServer
+// Hàm dịch 6 trạng thái giao thông khớp với XML GeoServer
 const formatStatus = (status) => {
   if (status === 'severe') return '⚫ Severe Congestion';
   if (status === 'congested') return '🔴 Congested';
@@ -165,10 +165,13 @@ const formatStatus = (status) => {
   z-index: 9999;
 }
 .modal-container {
-  background: white; width: 850px; max-width: 90%;
-  border-radius: 8px; overflow: hidden;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: white;
+  width: 850px;
+  max-width: 90%;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 18px 50px rgba(15, 23, 42, 0.28);
+  font-family: 'Inter', 'Segoe UI', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
 }
 .modal-header {
   background: #011d42; color: white; padding: 15px 20px;

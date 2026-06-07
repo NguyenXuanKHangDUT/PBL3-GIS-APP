@@ -154,6 +154,7 @@ const handleFileUpload = async (event) => {
   display: flex;
   flex-direction: column;
   transition: width 0.3s ease;
+  font-family: 'Inter', 'Segoe UI', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
 }
 
 .map-toolbar.is-collapsed {

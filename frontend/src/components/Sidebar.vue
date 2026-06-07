@@ -95,6 +95,7 @@ const logout = () => {
   transition: width 0.3s ease;
   overflow: hidden;
   box-shadow: 2px 0 10px rgba(0,0,0,0.02);
+  font-family: 'Inter', 'Segoe UI', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
 }
 
 .sidebar.is-collapsed {
