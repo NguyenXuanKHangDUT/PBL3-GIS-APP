@@ -11,7 +11,7 @@ logging.getLogger("ultralytics").setLevel(logging.ERROR)
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
-MODEL_PATH = os.path.join(BASE_DIR, "yolo11s_traffic_best.pt")
+MODEL_PATH = os.path.join(BASE_DIR, "yolo11s_traffic_best_v2.pt")
 
 CONFIDENCE_THRESHOLD = 0.30
 
