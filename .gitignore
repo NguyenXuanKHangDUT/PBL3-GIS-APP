@@ -2,6 +2,10 @@
 node_modules/
 npm-debug.log
 yarn-error.log
+<<<<<<< HEAD
+=======
+.env
+>>>>>>> 87f324d672bebfc500d21d1cd84170ef82c5c1ef
 
 # Python & YOLO
 __pycache__/
