@@ -1,6 +1,7 @@
 import express from 'express';
 import {
     setupLiveCamera,
+    getSetupFrame,
     removeCamera,
     viewSimulation,
     startWebSimulation,
@@ -17,6 +18,8 @@ router.post('/setup', setupLiveCamera);
 router.post('/remove', removeCamera);
 
 router.post('/simulate', viewSimulation);
+
+router.post('/setup-frame', getSetupFrame);
 
 router.post('/simulate/start', startWebSimulation);
 router.post('/simulate/stop', stopWebSimulation);
