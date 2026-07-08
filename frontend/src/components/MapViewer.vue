@@ -45,6 +45,53 @@
       </div>
     </div>
 
+    <!-- WEB SIMULATION MODAL -->
+    <div v-if="simulationModalVisible" class="simulation-overlay">
+      <div class="simulation-modal">
+        <div class="simulation-header">
+          <div>
+            <h3>Bird's Eye View Simulation</h3>
+            <p>{{ simulationTitle }}</p>
+          </div>
+
+          <button class="simulation-close-btn" @click="closeSimulationModal">✖</button>
+        </div>
+
+        <div class="simulation-body">
+          <canvas
+            ref="simulationCanvasRef"
+            class="simulation-canvas"
+            width="300"
+            height="700"
+          ></canvas>
+
+          <div class="simulation-side">
+            <h4>Realtime Web Simulator</h4>
+            <p>
+              Python still handles YOLO + BoT-SORT + Homography, while Vue renders
+              the Bird's Eye View canvas through Socket.IO data.
+            </p>
+
+            <div class="simulation-status-box">
+              <span class="status-dot" :class="{ active: simulationRunning }"></span>
+              <span>{{ simulationStatus }}</span>
+            </div>
+
+            <div class="simulation-legend">
+              <div><span class="legend-dot car"></span> Car</div>
+              <div><span class="legend-dot motorcycle"></span> Motorcycle</div>
+              <div><span class="legend-dot bus"></span> Bus</div>
+              <div><span class="legend-dot truck"></span> Truck</div>
+            </div>
+
+            <button class="simulation-stop-btn" @click="closeSimulationModal">
+              Stop Simulation
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <!-- ROI SETUP MODAL -->
     <div v-if="roiModalVisible" class="roi-overlay">
       <div class="roi-modal">
@@ -140,7 +187,7 @@
 // camera.pgn nằm ở src/assets/icons/camera.png
 import cameraIcon from '@/assets/icons/camera.png'
 
-import { ref, computed, nextTick, onMounted, onUnmounted, watch } from 'vue' 
+import { ref, computed, nextTick, onMounted, onUnmounted, watch } from 'vue'
 import maplibregl from 'maplibre-gl'
 import 'maplibre-gl/dist/maplibre-gl.css'
 import * as turf from '@turf/turf'
@@ -166,6 +213,16 @@ let socket = null
 
 const userRole = ref('user')
 const authToken = ref('')
+
+/* ===============================
+   ADD CAMERA LINK POPOVER
+================================ */
+const streamPopoverVisible = ref(false)
+const streamPopoverLeft = ref(0)
+const streamPopoverTop = ref(0)
+const streamInputValue = ref('')
+const streamInputRef = ref(null)
+const pendingRoadClick = ref(null)
 
 const openStreamPopover = async (event, roadFeature) => {
   const roadId = roadFeature.properties.id || 'unknown'
@@ -247,13 +304,6 @@ const roiFrameSrc = ref('')
 const roiPoints = ref([])
 const roiImageRef = ref(null)
 const pendingCamera = ref(null)
-
-const streamPopoverVisible = ref(false)
-const streamPopoverLeft = ref(0)
-const streamPopoverTop = ref(0)
-const streamInputValue = ref('')
-const streamInputRef = ref(null)
-const pendingRoadClick = ref(null)
 
 const roiPolylinePoints = computed(() => {
   return roiPoints.value.map(p => `${p.x},${p.y}`).join(' ')
@@ -407,6 +457,192 @@ const confirmRoiSetup = async () => {
   } finally {
     roiSaving.value = false
   }
+}
+
+/* ===============================
+   WEB SIMULATION STATE
+================================ */
+const simulationModalVisible = ref(false)
+const simulationCanvasRef = ref(null)
+const simulationRoadId = ref(null)
+const simulationTitle = ref('Starting simulation...')
+const simulationStatus = ref('Not running')
+const simulationRunning = ref(false)
+
+const SIM_WIDTH = 300
+const SIM_HEIGHT = 700
+
+const SIM_CLASS_COLORS = {
+  0: '#ffff00',
+  1: '#ff00ff',
+  2: '#ffa500',
+  3: '#00ff00'
+}
+
+const drawSimulationLegend = (ctx) => {
+  const legendTop = SIM_HEIGHT - 95
+
+  ctx.fillStyle = '#1e1e1e'
+  ctx.fillRect(0, legendTop, SIM_WIDTH, 95)
+
+  ctx.fillStyle = '#ffffff'
+  ctx.font = '15px Arial'
+  ctx.fillText('Legend', 10, legendTop + 22)
+
+  const items = [
+    { classId: 0, name: 'Car', x: 10, y: legendTop + 45 },
+    { classId: 1, name: 'Motorcycle', x: 150, y: legendTop + 45 },
+    { classId: 2, name: 'Bus', x: 10, y: legendTop + 70 },
+    { classId: 3, name: 'Truck', x: 150, y: legendTop + 70 }
+  ]
+
+  items.forEach(item => {
+    ctx.fillStyle = SIM_CLASS_COLORS[item.classId] || '#ffffff'
+    ctx.beginPath()
+    ctx.arc(item.x + 8, item.y - 5, 6, 0, Math.PI * 2)
+    ctx.fill()
+
+    ctx.fillStyle = '#dddddd'
+    ctx.font = '12px Arial'
+    ctx.fillText(item.name, item.x + 20, item.y)
+  })
+}
+
+const drawSimulationBase = () => {
+  const canvas = simulationCanvasRef.value
+  if (!canvas) return
+
+  const ctx = canvas.getContext('2d')
+
+  ctx.clearRect(0, 0, SIM_WIDTH, SIM_HEIGHT)
+
+  ctx.fillStyle = '#323232'
+  ctx.fillRect(0, 0, SIM_WIDTH, SIM_HEIGHT)
+
+  ctx.strokeStyle = '#ffffff'
+  ctx.lineWidth = 3
+
+  ctx.beginPath()
+  ctx.moveTo(20, 0)
+  ctx.lineTo(20, SIM_HEIGHT)
+  ctx.stroke()
+
+  ctx.beginPath()
+  ctx.moveTo(SIM_WIDTH - 20, 0)
+  ctx.lineTo(SIM_WIDTH - 20, SIM_HEIGHT)
+  ctx.stroke()
+
+  const centerX = SIM_WIDTH / 2
+
+  ctx.lineWidth = 2
+
+  for (let y = 10; y < SIM_HEIGHT; y += 40) {
+    ctx.beginPath()
+    ctx.moveTo(centerX, y)
+    ctx.lineTo(centerX, y + 20)
+    ctx.stroke()
+  }
+
+  drawSimulationLegend(ctx)
+}
+
+const drawSimulationFrame = (payload) => {
+  if (!simulationModalVisible.value) return
+  if (!payload || String(payload.road_id) !== String(simulationRoadId.value)) return
+
+  const canvas = simulationCanvasRef.value
+  if (!canvas) return
+
+  const ctx = canvas.getContext('2d')
+
+  drawSimulationBase()
+
+  const vehicles = payload.vehicles || []
+
+  vehicles.forEach(vehicle => {
+    const x = vehicle.x
+    const y = vehicle.y
+    const color = SIM_CLASS_COLORS[vehicle.class_id] || '#ffffff'
+
+    ctx.fillStyle = color
+    ctx.beginPath()
+    ctx.arc(x, y, 6, 0, Math.PI * 2)
+    ctx.fill()
+
+    ctx.fillStyle = color
+    ctx.font = '12px Arial'
+    ctx.fillText(String(vehicle.id), x + 8, y + 5)
+  })
+
+  simulationRunning.value = true
+  simulationStatus.value = `Running realtime simulation - ${vehicles.length} vehicles in ROI`
+}
+
+const stopSimulationProcess = async (roadId) => {
+  if (!roadId) return
+
+  try {
+    await fetch('http://localhost:5000/api/traffic/simulate/stop', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${authToken.value}`
+      },
+      body: JSON.stringify({
+        road_id: roadId,
+        socket_id: socket?.id || null
+      })
+    })
+  } catch (error) {}
+}
+
+const openSimulationModal = async (cam) => {
+  simulationModalVisible.value = true
+  simulationRoadId.value = cam.road_id
+  simulationTitle.value = `${cam.name} - Road ID: ${cam.road_id}`
+  simulationStatus.value = 'Starting Python web simulator...'
+  simulationRunning.value = false
+
+  await nextTick()
+  drawSimulationBase()
+
+  try {
+    const res = await fetch('http://localhost:5000/api/traffic/simulate/start', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${authToken.value}`
+      },
+      body: JSON.stringify({
+        road_id: cam.road_id,
+        socket_id: socket?.id || null
+      })
+    })
+
+    const result = await res.json()
+
+    if (!result.success) {
+      simulationStatus.value = result.message || 'Cannot start simulation.'
+      simulationRunning.value = false
+      return
+    }
+
+    simulationStatus.value = result.message || 'Web simulation started.'
+  } catch (error) {
+    simulationStatus.value = 'Backend connection error while starting simulation.'
+    simulationRunning.value = false
+  }
+}
+
+const closeSimulationModal = async () => {
+  const roadId = simulationRoadId.value
+
+  simulationModalVisible.value = false
+  simulationRunning.value = false
+  simulationStatus.value = 'Simulation stopped'
+  simulationRoadId.value = null
+
+  await stopSimulationProcess(roadId)
 }
 
 /* ===============================
@@ -604,30 +840,7 @@ const loadCameras = async () => {
         }
 
         popupNode.querySelector('.sim-btn').addEventListener('click', async () => {
-          try {
-            const simRes = await fetch('http://localhost:5000/api/traffic/simulate', {
-              method: 'POST',
-              headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${authToken.value}`
-              },
-              body: JSON.stringify({
-                road_id: cam.road_id
-              })
-            })
-
-            const simData = await simRes.json()
-
-            if (!simData.success) {
-              alert(simData.message)
-            }
-
-            if (props.activeLayer === 'heatmap') {
-              loadHeatmap()
-            }
-          } catch (error) {
-            alert('Error connecting to Backend or Python not installed!')
-          }
+          await openSimulationModal(cam)
         })
       })
     }
@@ -825,6 +1038,20 @@ onMounted(() => {
     // }
   })
 
+  socket.on('simulation-frame', (payload) => {
+    drawSimulationFrame(payload)
+  })
+
+  socket.on('simulation-status', (payload) => {
+    if (!payload || String(payload.road_id) !== String(simulationRoadId.value)) return
+
+    simulationStatus.value = payload.message || 'Simulation status updated'
+
+    if (payload.success === false) {
+      simulationRunning.value = false
+    }
+  })
+
   heatmapInterval = setInterval(() => {
     if (props.activeLayer === 'heatmap') {
       loadHeatmap()
@@ -943,6 +1170,10 @@ onMounted(() => {
 })
 
 onUnmounted(() => {
+  if (simulationRoadId.value) {
+    stopSimulationProcess(simulationRoadId.value)
+  }
+
   if (heatmapInterval) {
     clearInterval(heatmapInterval)
   }
@@ -970,6 +1201,161 @@ onUnmounted(() => {
   position: absolute;
   top: 0;
   left: 0;
+}
+
+/* ===============================
+   WEB SIMULATION MODAL
+================================ */
+.simulation-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 3200;
+  background: rgba(0, 0, 0, 0.72);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  box-sizing: border-box;
+}
+
+.simulation-modal {
+  width: min(760px, 96vw);
+  background: white;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
+  font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
+}
+
+.simulation-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 16px;
+  padding: 16px 20px;
+  background: #011d42;
+  color: white;
+}
+
+.simulation-header h3 {
+  margin: 0 0 6px 0;
+  font-size: 18px;
+}
+
+.simulation-header p {
+  margin: 0;
+  font-size: 13px;
+  opacity: 0.85;
+}
+
+.simulation-close-btn {
+  border: none;
+  background: transparent;
+  color: white;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.simulation-body {
+  display: flex;
+  gap: 18px;
+  padding: 18px;
+  background: #f5f5f5;
+}
+
+.simulation-canvas {
+  width: 300px;
+  height: 700px;
+  background: #323232;
+  border-radius: 8px;
+  border: 2px solid #d0d0d0;
+}
+
+.simulation-side {
+  flex: 1;
+  background: white;
+  border-radius: 8px;
+  padding: 16px;
+  border: 1px solid #e0e0e0;
+}
+
+.simulation-side h4 {
+  margin: 0 0 10px 0;
+  color: #011d42;
+}
+
+.simulation-side p {
+  margin: 0 0 14px 0;
+  font-size: 13px;
+  line-height: 1.45;
+  color: #555;
+}
+
+.simulation-status-box {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: #f0f4f8;
+  border-radius: 6px;
+  padding: 10px;
+  font-size: 13px;
+  color: #333;
+  margin-bottom: 14px;
+}
+
+.status-dot {
+  width: 10px;
+  height: 10px;
+  background: #999;
+  border-radius: 50%;
+}
+
+.status-dot.active {
+  background: #4caf50;
+}
+
+.simulation-legend {
+  display: grid;
+  gap: 8px;
+  font-size: 13px;
+  color: #333;
+  margin-bottom: 18px;
+}
+
+.legend-dot {
+  display: inline-block;
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  margin-right: 8px;
+  vertical-align: middle;
+}
+
+.legend-dot.car {
+  background: #ffff00;
+}
+
+.legend-dot.motorcycle {
+  background: #ff00ff;
+}
+
+.legend-dot.bus {
+  background: #ffa500;
+}
+
+.legend-dot.truck {
+  background: #00ff00;
+}
+
+.simulation-stop-btn {
+  width: 100%;
+  border: none;
+  background: #f44336;
+  color: white;
+  border-radius: 6px;
+  padding: 11px;
+  font-weight: bold;
+  cursor: pointer;
 }
 
 /* ===============================

@@ -4,6 +4,7 @@ import path from 'path';
 
 /* Object quản lý các tiến trình đang chạy ngầm */
 export const activeCameras = {};
+export const activeSimulations = {};
 
 export const getSetupFrame = async (req, res) => {
     const { stream_link } = req.body;
@@ -154,10 +155,16 @@ export const startBackgroundCounter = (road_id, stream_link, coords) => {
 export const removeCamera = async (req, res) => {
     const { road_id } = req.body;
     
-    /* Kill ngay lập tức tiến trình Python đang chạy ngầm của đường này */
+    
     if (activeCameras[road_id]) {
         activeCameras[road_id].kill();
         delete activeCameras[road_id];
+        Object.keys(activeSimulations).forEach(key => {
+            if (key.startsWith(`${road_id}::`)) {
+                activeSimulations[key].kill();
+                delete activeSimulations[key];
+            }
+        });
     }
     
     try {
@@ -184,7 +191,17 @@ export const viewSimulation = async (req, res) => {
         const { camera_link, camera_coords } = rows[0];
         const yoloDirectory = path.resolve('../YOLO');
         
-        const simProcess = spawn('python', ['yolo_simulator.py', camera_link, camera_coords], { cwd: yoloDirectory });
+        const simProcess = spawn(
+            'python',
+            ['-u', 'yolo_simulator_stream.py', camera_link, camera_coords],
+            {
+                cwd: yoloDirectory,
+                env: {
+                    ...process.env,
+                    PYTHONUNBUFFERED: '1'
+                }
+            }
+        );
 
         simProcess.on('error', (err) => {
             console.error('Lỗi chạy simulator:', err);
@@ -195,6 +212,181 @@ export const viewSimulation = async (req, res) => {
     } catch (error) {
         res.status(500).json({ success: false, message: error.message });
     }
+};
+
+export const startWebSimulation = async (req, res) => {
+    const { road_id, socket_id } = req.body;
+
+    if (!road_id) {
+        return res.status(400).json({
+            success: false,
+            message: 'Thiếu road_id.'
+        });
+    }
+
+    try {
+        const [rows] = await pool.query(
+            'SELECT camera_link, camera_coords FROM roads WHERE id = ?',
+            [road_id]
+        );
+
+        if (rows.length === 0 || !rows[0].camera_link || !rows[0].camera_coords) {
+            return res.status(400).json({
+                success: false,
+                message: 'Đường này chưa được gắn Camera hoặc chưa có ROI!'
+            });
+        }
+
+        const { camera_link, camera_coords } = rows[0];
+
+        const simKey = `${road_id}::${socket_id || 'global'}`;
+
+        if (activeSimulations[simKey]) {
+            activeSimulations[simKey].kill();
+            delete activeSimulations[simKey];
+        }
+
+        const yoloDirectory = path.resolve('../YOLO');
+
+        const simProcess = spawn(
+            'python',
+            ['yolo_simulator_stream.py', camera_link, camera_coords],
+            {
+                cwd: yoloDirectory
+            }
+        );
+
+        activeSimulations[simKey] = simProcess;
+
+        let stdoutBuffer = '';
+
+        simProcess.stdout.on('data', (data) => {
+            stdoutBuffer += data.toString();
+
+            const lines = stdoutBuffer.split(/\r?\n/);
+            stdoutBuffer = lines.pop();
+
+            for (const line of lines) {
+                const trimmed = line.trim();
+                if (!trimmed) continue;
+
+                try {
+                    const result = JSON.parse(trimmed);
+
+                    if (!global.io) continue;
+
+                    if (result.type === 'sim_frame') {
+                        const payload = {
+                            road_id,
+                            width: result.width,
+                            height: result.height,
+                            vehicles: result.vehicles || [],
+                            timestamp: result.timestamp
+                        };
+
+                        if (socket_id) {
+                            global.io.to(socket_id).emit('simulation-frame', payload);
+                        } else {
+                            global.io.emit('simulation-frame', payload);
+                        }
+                    }
+
+                    if (result.type === 'sim_status') {
+                        const payload = {
+                            road_id,
+                            success: result.success,
+                            message: result.message
+                        };
+
+                        if (socket_id) {
+                            global.io.to(socket_id).emit('simulation-status', payload);
+                        } else {
+                            global.io.emit('simulation-status', payload);
+                        }
+                    }
+                } catch (error) {
+                    console.error('Lỗi parse simulation JSON:', trimmed);
+                }
+            }
+        });
+
+        simProcess.stderr.on('data', (data) => {
+            console.error('[SIM STDERR]', data.toString());
+        });
+
+        simProcess.on('close', () => {
+            delete activeSimulations[simKey];
+
+            if (global.io) {
+                const payload = {
+                    road_id,
+                    success: true,
+                    message: 'Simulation stopped'
+                };
+
+                if (socket_id) {
+                    global.io.to(socket_id).emit('simulation-status', payload);
+                } else {
+                    global.io.emit('simulation-status', payload);
+                }
+            }
+        });
+
+        simProcess.on('error', (err) => {
+            console.error('Lỗi chạy web simulator:', err);
+
+            delete activeSimulations[simKey];
+
+            if (global.io) {
+                const payload = {
+                    road_id,
+                    success: false,
+                    message: 'Không thể khởi động web simulator.'
+                };
+
+                if (socket_id) {
+                    global.io.to(socket_id).emit('simulation-status', payload);
+                } else {
+                    global.io.emit('simulation-status', payload);
+                }
+            }
+        });
+
+        return res.json({
+            success: true,
+            message: 'Đã khởi động mô phỏng web.'
+        });
+
+    } catch (error) {
+        return res.status(500).json({
+            success: false,
+            message: error.message
+        });
+    }
+};
+
+
+export const stopWebSimulation = async (req, res) => {
+    const { road_id, socket_id } = req.body;
+
+    if (!road_id) {
+        return res.status(400).json({
+            success: false,
+            message: 'Thiếu road_id.'
+        });
+    }
+
+    const simKey = `${road_id}::${socket_id || 'global'}`;
+
+    if (activeSimulations[simKey]) {
+        activeSimulations[simKey].kill();
+        delete activeSimulations[simKey];
+    }
+
+    return res.json({
+        success: true,
+        message: 'Đã dừng mô phỏng web.'
+    });
 };
 
 export const getHeatmapData = async (req, res) => {
