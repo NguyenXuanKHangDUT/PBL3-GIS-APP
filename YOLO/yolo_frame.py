@@ -11,7 +11,7 @@ def main():
     if len(sys.argv) < 2:
         print(json.dumps({
             "success": False,
-            "message": "Thiếu link video."
+            "message": "Missing video link argument."
         }))
         sys.exit(1)
 
@@ -22,7 +22,7 @@ def main():
     ret = False
     frame = None
 
-    # Thử đọc nhiều frame để tránh stream m3u8 chưa kịp mở
+    # Try reading multiple frames to avoid m3u8 stream not being ready
     for _ in range(30):
         ret, frame = cap.read()
         if ret and frame is not None:
@@ -34,7 +34,7 @@ def main():
     if not ret or frame is None:
         print(json.dumps({
             "success": False,
-            "message": "Không thể lấy frame từ luồng camera. Vui lòng kiểm tra link."
+            "message": "Cannot get frame from camera stream. Please check the link."
         }))
         sys.exit(1)
 
@@ -45,7 +45,7 @@ def main():
     if not ok:
         print(json.dumps({
             "success": False,
-            "message": "Không thể mã hóa frame."
+            "message": "Cannot encode frame."
         }))
         sys.exit(1)
 

@@ -16,7 +16,6 @@ const route = useRoute()
 </script>
 
 <style>
-/* Reset margin/padding cơ bản */
 body, html {
   margin: 0;
   padding: 0;
@@ -24,16 +23,16 @@ body, html {
 }
 
 .app-layout {
-  display: flex; /* Đặt Sidebar và Nội dung nằm dàn hàng ngang */
+  display: flex;
   height: 100vh;
   width: 100vw;
   overflow: hidden;
 }
 
 .main-content {
-  flex: 1; /* Để nội dung chiếm hết phần còn lại bên phải */
+  flex: 1;
   position: relative;
-  overflow-y: auto; /* Cho phép cuộn nội dung nếu trang quá dài */
+  overflow-y: auto;
   background: #f4f7f6;
 }
 </style>

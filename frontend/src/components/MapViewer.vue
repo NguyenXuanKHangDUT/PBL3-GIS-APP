@@ -2,7 +2,6 @@
   <div class="map-root">
     <div ref="mapContainer" class="map-container"></div>
 
-    <!-- ADD CAMERA LINK POPOVER -->
     <div
       v-if="streamPopoverVisible"
       class="stream-popover-backdrop"
@@ -45,7 +44,6 @@
       </div>
     </div>
 
-    <!-- WEB SIMULATION MODAL -->
     <div v-if="simulationModalVisible" class="simulation-overlay">
       <div class="simulation-modal">
         <div class="simulation-header">
@@ -92,7 +90,6 @@
       </div>
     </div>
 
-    <!-- ROI SETUP MODAL -->
     <div v-if="roiModalVisible" class="roi-overlay">
       <div class="roi-modal">
         <div class="roi-header">
@@ -183,8 +180,6 @@
 </template>
 
 <script setup>
-// import cameraIcon from '@/assets/camera.png' // cái này nó gây lỗi á
-// camera.pgn nằm ở src/assets/icons/camera.png
 import cameraIcon from '@/assets/icons/camera.png'
 
 import { ref, computed, nextTick, onMounted, onUnmounted, watch } from 'vue'
@@ -200,7 +195,7 @@ const props = defineProps({
   avoidTraffic: { type: Boolean, default: false }
 })
 
-const emit = defineEmits(['update-point', 'query-result', 'cancel-mode'])
+const emit = defineEmits(['update-point', 'query-result'])
 
 const mapContainer = ref(null)
 let map = null
@@ -214,9 +209,6 @@ let socket = null
 const userRole = ref('user')
 const authToken = ref('')
 
-/* ===============================
-   ADD CAMERA LINK POPOVER
-================================ */
 const streamPopoverVisible = ref(false)
 const streamPopoverLeft = ref(0)
 const streamPopoverTop = ref(0)
@@ -290,9 +282,6 @@ const submitStreamLink = async () => {
   await openRoiSetupModal(cameraData)
 }
 
-/* ===============================
-   ROI SETUP STATE
-================================ */
 const ROI_FRAME_WIDTH = 1280
 const ROI_FRAME_HEIGHT = 720
 
@@ -459,9 +448,6 @@ const confirmRoiSetup = async () => {
   }
 }
 
-/* ===============================
-   WEB SIMULATION STATE
-================================ */
 const simulationModalVisible = ref(false)
 const simulationCanvasRef = ref(null)
 const simulationRoadId = ref(null)
@@ -645,9 +631,6 @@ const closeSimulationModal = async () => {
   await stopSimulationProcess(roadId)
 }
 
-/* ===============================
-   POLYGON QUERY
-================================ */
 const updateDrawPolygon = () => {
   if (!map) return
 
@@ -744,9 +727,6 @@ const runSpatialQuery = () => {
   map.doubleClickZoom.enable()
 }
 
-/* ===============================
-   CAMERA MARKERS
-================================ */
 const loadCameras = async () => {
   try {
     const res = await fetch('http://localhost:5000/api/cameras', {
@@ -847,9 +827,6 @@ const loadCameras = async () => {
   } catch (error) {}
 }
 
-/* ===============================
-   HEATMAP
-================================ */
 const loadHeatmap = async () => {
   if (!roadGeoJSON || !map) return
 
@@ -933,9 +910,6 @@ const resetRoadColor = () => {
   }
 }
 
-/* ===============================
-   WATCHERS
-================================ */
 watch(() => props.activeLayer, (newLayer) => {
   cameraMarkers.forEach(marker => {
     const markerEl = marker.getElement()
@@ -1019,9 +993,6 @@ watch(() => props.triggerRoute, async () => {
   }
 })
 
-/* ===============================
-   MAP INIT
-================================ */
 onMounted(() => {
   userRole.value = localStorage.getItem('user_role') || 'user'
   authToken.value = localStorage.getItem('token') || ''
@@ -1031,9 +1002,7 @@ onMounted(() => {
   socket.on('traffic-update', () => {
     loadCameras()
 
-    // Vẫn giữ heatmap cập nhật theo chu kỳ 60s để tránh reload WMS liên tục.
-    // Nếu muốn realtime heatmap tức thì thì mở đoạn dưới:
-    // if (props.activeLayer === 'heatmap') {
+    // if (props.activeLayer === 'heatmap') { // real time instant heatmap
     //   loadHeatmap()
     // }
   })
@@ -1203,9 +1172,6 @@ onUnmounted(() => {
   left: 0;
 }
 
-/* ===============================
-   WEB SIMULATION MODAL
-================================ */
 .simulation-overlay {
   position: fixed;
   inset: 0;
@@ -1358,9 +1324,6 @@ onUnmounted(() => {
   cursor: pointer;
 }
 
-/* ===============================
-   ROI SETUP MODAL
-================================ */
 .roi-overlay {
   position: fixed;
   inset: 0;

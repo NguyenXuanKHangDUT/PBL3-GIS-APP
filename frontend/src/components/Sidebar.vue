@@ -87,7 +87,7 @@ const logout = () => {
 
 <style scoped>
 .sidebar {
-  width: 260px; /* Nới rộng một chút để chứa logo và text cho thoải mái */
+  width: 260px;
   background: #ffffff;
   border-right: 1px solid #e0e0e0;
   display: flex;
@@ -110,7 +110,7 @@ const logout = () => {
   align-items: center;
   gap: 15px;
   white-space: nowrap;
-  height: 70px; /* Cố định chiều cao để không bị giật khi thu phóng */
+  height: 70px;
   box-sizing: border-box;
 }
 
@@ -127,7 +127,6 @@ const logout = () => {
   color: #4caf50;
 }
 
-/* Style cho Logo và Tên App */
 .brand-wrapper {
   display: flex;
   align-items: center;
@@ -182,7 +181,7 @@ const logout = () => {
   background: #e8f0fe;
   color: #011d42;
   font-weight: 700;
-  border-left: 4px solid #4caf50; /* Điểm nhấn xanh lá cây viền trái */
+  border-left: 4px solid #4caf50;
 }
 
 .footer {

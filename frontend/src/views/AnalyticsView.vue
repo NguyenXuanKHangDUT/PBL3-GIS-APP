@@ -103,7 +103,6 @@ onMounted(() => {
 </script>
 
 <style scoped>
-/* CSS giữ nguyên như cũ của bạn, chỉ đổi font cho hiện đại hơn chút */
 .analytics-container { padding: 30px; background: #f4f7f9; min-height: 100vh; font-family: sans-serif; }
 .header-section { display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px; }
 .header-section h2 { color: #011d42; margin: 0; }

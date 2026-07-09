@@ -22,7 +22,6 @@ const router = createRouter({
   routes
 })
 
-/* TRẠM KIỂM SOÁT DI CHUYỂN */
 router.beforeEach((to, from, next) => {
   const token = localStorage.getItem('token');
   const role = localStorage.getItem('user_role');

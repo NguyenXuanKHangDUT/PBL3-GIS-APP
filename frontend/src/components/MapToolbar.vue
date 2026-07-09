@@ -107,7 +107,7 @@ const fileInput = ref(null)
 const isCollapsed = ref(false)
 const avoidTraffic = ref(false)
 
-const emit = defineEmits(['locate-user', 'set-mode', 'find-route', 'update-avoid-traffic', 'open-dashboard'])
+const emit = defineEmits(['set-mode', 'find-route', 'update-avoid-traffic', 'open-dashboard'])
 
 const toggleToolbar = () => {
   isCollapsed.value = !isCollapsed.value
@@ -130,25 +130,24 @@ const handleFileUpload = async (event) => {
 
     const result = await response.json()
     if (result.success) {
-      alert("Đã nhập dữ liệu thành công! Hãy F5 để xem thay đổi.")
+      alert("Data imported successfully! Please refresh the page to see the changes.")
     } else {
-      alert("Lỗi: " + result.message)
+      alert("Error: " + result.message)
     }
   } catch (error) {
-    alert("Không thể kết nối đến server! Vui lòng kiểm tra lại Backend.")
+    alert("Unable to connect to the server! Please check the backend.")
   }
 }
 </script>
 
 <style scoped>
-/* CSS đã được tối ưu cho gọn gàng và thanh lịch hơn */
 .map-toolbar {
   position: absolute;
   top: 20px;
   left: 20px;
-  width: 380px; /* Nới rộng một chút cho chữ dễ đọc */
+  width: 380px;
   background: #ffffff;
-  border-radius: 8px; /* Bo góc mượt hơn */
+  border-radius: 8px; 
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
   overflow: hidden;
   display: flex;
@@ -181,7 +180,7 @@ const handleFileUpload = async (event) => {
 
 .toolbar-tabs {
   display: flex;
-  background: #011d42; /* Đổi sang màu xanh navy cho đồng bộ với theme App */
+  background: #011d42;
 }
 
 .tab-item {
@@ -202,16 +201,15 @@ const handleFileUpload = async (event) => {
 
 .tab-item.active {
   color: white;
-  border-bottom: 3px solid #4caf50; /* Gạch chân xanh lá nổi bật */
+  border-bottom: 3px solid #4caf50;
 }
 
 .tab-content {
   padding: 0;
   max-height: calc(100vh - 150px);
-  overflow-y: auto; /* Thêm cuộn nếu màn hình nhỏ */
+  overflow-y: auto;
 }
 
-/* Kéo thanh cuộn đẹp hơn */
 .tab-content::-webkit-scrollbar { width: 6px; }
 .tab-content::-webkit-scrollbar-track { background: #f1f1f1; }
 .tab-content::-webkit-scrollbar-thumb { background: #c1c1c1; border-radius: 4px; }

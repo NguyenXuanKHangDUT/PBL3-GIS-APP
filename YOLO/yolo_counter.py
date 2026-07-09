@@ -73,7 +73,7 @@ def main():
 
     print(json.dumps({
         "status": "started",
-        "message": "Bắt đầu luồng đếm xe bằng YOLO custom..."
+        "message": "Starting vehicle counting stream with custom YOLO..."
     }))
     sys.stdout.flush()
 

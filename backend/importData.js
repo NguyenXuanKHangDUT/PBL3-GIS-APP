@@ -6,11 +6,11 @@ const seedDatabase = async () => {
         const rawData = fs.readFileSync('./data.json', 'utf8');
         const geojson = JSON.parse(rawData);
 
-        console.log(`Đang chuẩn bị nạp ${geojson.features.length} đoạn đường vào MySQL...`);
+        console.log(`Preparing to import ${geojson.features.length} road segments into MySQL...`); // english
 
         for (const feature of geojson.features) {
             const id = feature.id; 
-            const name = feature.properties.name || 'Chưa rõ tên';
+            const name = feature.properties.name || 'Unknown Name';
             const type = feature.properties.highway || 'unclassified';
             
             const geometryString = JSON.stringify(feature.geometry);
@@ -21,11 +21,11 @@ const seedDatabase = async () => {
             );
         }
 
-        console.log('✅ Import dữ liệu GIS thành công');
+        console.log('✅ Import GIS data completed successfully.'); // english
         process.exit(0);
         
     } catch (error) {
-        console.error('❌ Có lỗi xảy ra:', error.message);
+        console.error('❌ An error occurred:', error.message);
         process.exit(1);
     }
 };

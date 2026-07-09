@@ -67,7 +67,7 @@ const buildRoutingGraphCache = async () => {
                 ? JSON.parse(road.geojson_data)
                 : road.geojson_data;
         } catch (error) {
-            console.warn(`⚠️ [ROUTING CACHE] Lỗi parse geojson_data road ${road.id}`);
+            console.warn(`⚠️ [ROUTING CACHE] Error parsing geojson_data road ${road.id}`);
             continue;
         }
 
@@ -201,7 +201,7 @@ export const uploadGeoJSON = async (req, res) => {
         if (!req.file) {
             return res.status(400).json({
                 success: false,
-                message: 'Vui lòng chọn file GeoJSON'
+                message: 'Please upload a GeoJSON file'
             });
         }
 
@@ -229,7 +229,7 @@ export const uploadGeoJSON = async (req, res) => {
 
         res.json({
             success: true,
-            message: `Đã nhập thành công ${roads.length} đoạn đường.`
+            message: `Successfully imported ${roads.length} road segments.`
         });
     } catch (error) {
         res.status(500).json({
@@ -243,13 +243,13 @@ export const findRoute = async (req, res) => {
     const { startCoord, endCoord, avoidTraffic } = req.body;
     const shouldAvoidTraffic = avoidTraffic === true || avoidTraffic === 'true';
 
-    console.log(">>> [FIND ROUTE] Bắt đầu tìm đường với Routing Graph Cache...");
+    console.log(">>> [FIND ROUTE] Starting route finding with Routing Graph Cache..."); 
 
     try {
         if (!startCoord || !endCoord) {
             return res.json({
                 success: false,
-                message: "Thiếu điểm bắt đầu hoặc điểm kết thúc!"
+                message: "Missing start or end point!"
             });
         }
 
@@ -258,7 +258,7 @@ export const findRoute = async (req, res) => {
         if (!graph || !nodeKeys || nodeKeys.length === 0) {
             return res.json({
                 success: false,
-                message: "Không có dữ liệu mạng lưới đường!"
+                message: "No road network data available!"
             });
         }
 
@@ -284,7 +284,7 @@ export const findRoute = async (req, res) => {
         if (!startNode || !endNode) {
             return res.json({
                 success: false,
-                message: "Điểm chọn nằm quá xa hệ thống đường!"
+                message: "Selected point is too far from the road network!"
             });
         }
 
@@ -368,11 +368,11 @@ export const findRoute = async (req, res) => {
         if (pathCoords.length < 2) {
             return res.json({
                 success: false,
-                message: "Bản đồ bị đứt gãy hoặc không có ngã tư hợp lệ gần đó!"
+                message: "Map is broken or no valid intersection near the selected point!"
             });
         }
 
-        console.log(">>> [FIND ROUTE] THÀNH CÔNG! Trả về lộ trình từ graph cache.");
+        console.log(">>> [FIND ROUTE] SUCCESS! Returning route from graph cache.");
 
         res.json({
             success: true,

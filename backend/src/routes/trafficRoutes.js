@@ -3,7 +3,7 @@ import {
     setupLiveCamera,
     getSetupFrame,
     removeCamera,
-    viewSimulation,
+    // viewSimulation,
     startWebSimulation,
     stopWebSimulation,
     getHeatmapData,
@@ -17,7 +17,7 @@ const router = express.Router();
 router.post('/setup', setupLiveCamera);
 router.post('/remove', removeCamera);
 
-router.post('/simulate', viewSimulation);
+// router.post('/simulate', viewSimulation);
 
 router.post('/setup-frame', getSetupFrame);
 

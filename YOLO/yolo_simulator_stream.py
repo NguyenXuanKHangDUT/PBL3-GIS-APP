@@ -31,8 +31,8 @@ FRAME_HEIGHT = 720
 MAP_WIDTH = 300
 MAP_HEIGHT = 700
 
-# Web simulator không cần 30 FPS.
-# 5–8 FPS là đủ mượt cho Bird's Eye View.
+# Web simulator does not need 30 FPS.
+# 5–8 FPS is enough for a smooth Bird's Eye View.
 TARGET_FPS = 6
 
 CLASS_NAMES = {
@@ -82,7 +82,7 @@ class LatestFrameReader:
         try:
             cap = cv2.VideoCapture(self.video_source)
 
-            # Có tác dụng với một số backend camera/file, không phải lúc nào m3u8 cũng nhận.
+            # Has an effect on some camera/file backends, not all m3u8 streams are accepted.
             try:
                 cap.set(cv2.CAP_PROP_BUFFERSIZE, 1)
             except Exception:
@@ -127,7 +127,7 @@ class LatestFrameReader:
                 self.frame = frame
                 self.last_frame_time = time.time()
 
-            # Nhường CPU nhẹ, tránh loop đọc frame ăn 100% CPU.
+            # sleep a tiny bit to avoid busy waiting, but not too long to keep the frame rate high
             time.sleep(0.001)
 
 
@@ -155,7 +155,7 @@ def main():
         send_json({
             "type": "sim_status",
             "success": False,
-            "message": "Thiếu video_source hoặc camera_coords."
+            "message": "Missing video_source or camera_coords."
         })
         sys.exit(1)
 
@@ -166,7 +166,7 @@ def main():
         coords_list = list(map(int, coords_str.split(",")))
 
         if len(coords_list) != 8:
-            raise ValueError("camera_coords phải có đúng 8 số.")
+            raise ValueError("camera_coords must contain exactly 8 numbers.")
 
         src_points = np.array(coords_list, dtype=np.float32).reshape(4, 2)
         roi_poly = src_points.astype(np.int32)
@@ -175,7 +175,7 @@ def main():
         send_json({
             "type": "sim_status",
             "success": False,
-            "message": f"Lỗi parse ROI: {str(e)}"
+            "message": f"Error parsing ROI: {str(e)}"
         })
         sys.exit(1)
 
@@ -185,7 +185,7 @@ def main():
         send_json({
             "type": "sim_status",
             "success": False,
-            "message": f"Không thể load model YOLO: {str(e)}"
+            "message": f"Cannot load YOLO model: {str(e)}"
         })
         sys.exit(1)
 
@@ -202,11 +202,11 @@ def main():
         "height": MAP_HEIGHT
     })
 
-    # Chờ frame đầu, tránh mở modal xong trống quá lâu mà không báo gì.
+    # wait for the first frame, but not more than 21 seconds
     first_frame = None
     wait_start = time.time()
 
-    while time.time() - wait_start < 10:
+    while time.time() - wait_start < 21:
         first_frame = reader.get_latest_frame()
 
         if first_frame is not None:
@@ -218,7 +218,7 @@ def main():
         send_json({
             "type": "sim_status",
             "success": False,
-            "message": "Không lấy được frame đầu từ camera sau 10 giây."
+            "message": "Cannot get initial frame from camera after 21 seconds."
         })
         reader.stop()
         sys.exit(1)
@@ -246,7 +246,7 @@ def main():
                 send_json({
                     "type": "sim_status",
                     "success": True,
-                    "message": "Đang chờ frame mới từ camera..."
+                    "message": "Waiting for new frame from camera..."
                 })
                 time.sleep(0.2)
                 continue
@@ -268,7 +268,7 @@ def main():
                 send_json({
                     "type": "sim_status",
                     "success": False,
-                    "message": f"Lỗi YOLO tracking: {str(e)}"
+                    "message": f"Error YOLO tracking: {str(e)}"
                 })
                 time.sleep(1)
                 continue

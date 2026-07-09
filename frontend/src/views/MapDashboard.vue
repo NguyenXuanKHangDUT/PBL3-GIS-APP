@@ -131,7 +131,6 @@ const fetchCameraDashboard = async () => {
   }
 };
 
-// Hàm dịch 6 trạng thái giao thông khớp với XML GeoServer
 const formatStatus = (status) => {
   if (status === 'severe') return '⚫ Severe Congestion';
   if (status === 'congested') return '🔴 Congested';
@@ -156,8 +155,6 @@ const formatStatus = (status) => {
   width: 100%;
   height: 100%;
 }
-
-/* CSS CHO MODAL CAMERA DASHBOARD */
 .modal-overlay {
   position: absolute; top: 0; left: 0; width: 100%; height: 100%;
   background: rgba(0,0,0,0.6);
@@ -185,7 +182,6 @@ table { width: 100%; border-collapse: collapse; }
 th, td { padding: 12px; text-align: left; border-bottom: 1px solid #eee; }
 th { background: #f0f2f5; color: #333; font-weight: bold; position: sticky; top: 0; }
 
-/* ĐÃ CẬP NHẬT: CSS 6 màu chuẩn theo file XML của GeoServer */
 .status-badge { 
   padding: 6px 12px; 
   border-radius: 20px; 
@@ -199,7 +195,7 @@ th { background: #f0f2f5; color: #333; font-weight: bold; position: sticky; top:
 .status-badge.severe { background: #8B0000; }
 .status-badge.congested { background: #FF0000; }
 .status-badge.heavy { background: #FF9800; }
-.status-badge.moderate { background: #FFEB3B; color: #333; } /* Chữ đen trên nền vàng cho dễ đọc */
+.status-badge.moderate { background: #FFEB3B; color: #333; }
 .status-badge.light { background: #4CAF50; }
 .status-badge.very_light { background: #00BCD4; }
 .status-badge.clear { background: #64B5F6; }

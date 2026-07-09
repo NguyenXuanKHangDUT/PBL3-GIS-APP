@@ -12,7 +12,7 @@ export const getSetupFrame = async (req, res) => {
     if (!stream_link) {
         return res.status(400).json({
             success: false,
-            message: 'Thiếu link luồng Camera (.m3u8 hoặc .mp4)'
+            message: 'Missing camera stream link (.m3u8 or .mp4)'
         });
     }
 
@@ -47,7 +47,7 @@ export const getSetupFrame = async (req, res) => {
         } catch (error) {
             return res.status(500).json({
                 success: false,
-                message: 'Lỗi lấy frame setup từ Python.',
+                message: 'Error fetching setup frame from Python.',
                 detail: errorData || error.message
             });
         }
@@ -60,21 +60,21 @@ export const setupLiveCamera = async (req, res) => {
     if (!road_id) {
         return res.status(400).json({
             success: false,
-            message: 'Thiếu road_id.'
+            message: 'Missing road_id.'
         });
     }
 
     if (!stream_link) {
         return res.status(400).json({
             success: false,
-            message: 'Thiếu link luồng Camera (.m3u8 hoặc .mp4).'
+            message: 'Missing camera stream link (.m3u8 or .mp4).'
         });
     }
 
     if (!coords) {
         return res.status(400).json({
             success: false,
-            message: 'Thiếu tọa độ ROI.'
+            message: 'Missing ROI coordinates.'
         });
     }
 
@@ -88,7 +88,7 @@ export const setupLiveCamera = async (req, res) => {
 
         return res.json({
             success: true,
-            message: 'Setup Camera thành công! ROI đã lưu và hệ thống đang đếm ngầm.'
+            message: 'Setup successful! ROI saved and system is now counting in the background.'
         });
     } catch (error) {
         return res.status(500).json({
@@ -169,23 +169,28 @@ export const removeCamera = async (req, res) => {
     
     try {
         await pool.query(
-            'UPDATE roads SET camera_link = NULL, camera_coords = NULL, vehicle_count = 0, density_level = "thong_thoang" WHERE id = ?',
+            `UPDATE roads
+            SET camera_link = NULL,
+                camera_coords = NULL,
+                vehicle_count = 0,
+                density_level = 'clear'
+            WHERE id = ?`,
             [road_id]
         );
-        res.json({ success: true, message: 'Đã xóa camera và giải phóng RAM thành công.' });
+        res.json({ success: true, message: 'deleted camera and released RAM successfully.' });
     } catch(error) {
         res.status(500).json({ success: false, message: error.message });
     }
 };
 
-export const viewSimulation = async (req, res) => {
+export const viewSimulation = async (req, res) => { // this is for testing only, not used in production
     const { road_id } = req.body;
     
     try {
         const [rows] = await pool.query('SELECT camera_link, camera_coords FROM roads WHERE id = ?', [road_id]);
         
         if (rows.length === 0 || !rows[0].camera_link || !rows[0].camera_coords) {
-            return res.status(400).json({ success: false, message: 'Đường này chưa được gắn Camera!' });
+            return res.status(400).json({ success: false, message: 'This road does not have a camera set up!' });
         }
 
         const { camera_link, camera_coords } = rows[0];
@@ -204,10 +209,10 @@ export const viewSimulation = async (req, res) => {
         );
 
         simProcess.on('error', (err) => {
-            console.error('Lỗi chạy simulator:', err);
+            console.error('Error running simulator:', err);
         });
 
-        res.json({ success: true, message: 'Đang mở cửa sổ mô phỏng...' });
+        res.json({ success: true, message: 'Opening simulation window...' });
 
     } catch (error) {
         res.status(500).json({ success: false, message: error.message });
@@ -220,7 +225,7 @@ export const startWebSimulation = async (req, res) => {
     if (!road_id) {
         return res.status(400).json({
             success: false,
-            message: 'Thiếu road_id.'
+            message: 'Missing road_id.'
         });
     }
 
@@ -233,7 +238,7 @@ export const startWebSimulation = async (req, res) => {
         if (rows.length === 0 || !rows[0].camera_link || !rows[0].camera_coords) {
             return res.status(400).json({
                 success: false,
-                message: 'Đường này chưa được gắn Camera hoặc chưa có ROI!'
+                message: 'This road does not have a camera set up or no ROI defined!'
             });
         }
 
@@ -250,9 +255,13 @@ export const startWebSimulation = async (req, res) => {
 
         const simProcess = spawn(
             'python',
-            ['yolo_simulator_stream.py', camera_link, camera_coords],
+            ['-u', 'yolo_simulator_stream.py', camera_link, camera_coords],
             {
-                cwd: yoloDirectory
+                cwd: yoloDirectory,
+                env: {
+                    ...process.env,
+                    PYTHONUNBUFFERED: '1'
+                }
             }
         );
 
@@ -305,7 +314,7 @@ export const startWebSimulation = async (req, res) => {
                         }
                     }
                 } catch (error) {
-                    console.error('Lỗi parse simulation JSON:', trimmed);
+                    console.error('Error parsing simulation JSON:', trimmed); // english
                 }
             }
         });
@@ -333,7 +342,7 @@ export const startWebSimulation = async (req, res) => {
         });
 
         simProcess.on('error', (err) => {
-            console.error('Lỗi chạy web simulator:', err);
+            console.error('Error running web simulator:', err);
 
             delete activeSimulations[simKey];
 
@@ -341,7 +350,7 @@ export const startWebSimulation = async (req, res) => {
                 const payload = {
                     road_id,
                     success: false,
-                    message: 'Không thể khởi động web simulator.'
+                    message: 'Unable to start web simulator.'
                 };
 
                 if (socket_id) {
@@ -354,7 +363,7 @@ export const startWebSimulation = async (req, res) => {
 
         return res.json({
             success: true,
-            message: 'Đã khởi động mô phỏng web.'
+            message: 'Simulation is starting.'
         });
 
     } catch (error) {
@@ -372,7 +381,7 @@ export const stopWebSimulation = async (req, res) => {
     if (!road_id) {
         return res.status(400).json({
             success: false,
-            message: 'Thiếu road_id.'
+            message: 'missing road_id.'
         });
     }
 
@@ -385,7 +394,7 @@ export const stopWebSimulation = async (req, res) => {
 
     return res.json({
         success: true,
-        message: 'Đã dừng mô phỏng web.'
+        message: 'Simulation stopped.'
     });
 };
 
@@ -451,7 +460,7 @@ export const autoResumeCameras = async () => {
         );
         
         if (rows.length > 0) {
-            console.log(`🤖 [AI System] Đang tự động đánh thức ${rows.length} luồng Camera...`);
+            console.log(`🤖 [AI System] auto-resuming ${rows.length} Camera...`);
             
             for (const row of rows) {
                 let coords = row.camera_coords;
@@ -461,13 +470,13 @@ export const autoResumeCameras = async () => {
                     coords = String(coords);
                 }
                 startBackgroundCounter(row.id, row.camera_link, coords);
-                console.log(`  👉 Đã khôi phục thành công Camera cho đường ID: ${row.id}`);
+                console.log(`  👉 Successfully resumed Camera for Road ID: ${row.id}`);
             }
         } else {
-            console.log(`🤖 [AI System] Hệ thống trống. Không có Camera nào cần khôi phục.`);
+            console.log(`🤖 [AI System] Systems are empty. No cameras need to be resumed.`);
         }
     } catch (error) {
-        console.error('❌ Lỗi khi tự động khôi phục Camera:', error.message);
+        console.error('❌ Error while automatically resuming cameras:', error.message);
     }
 };
 

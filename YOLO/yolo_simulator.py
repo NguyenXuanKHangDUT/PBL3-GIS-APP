@@ -1,3 +1,4 @@
+# this is for testing on local machine only, not used in production
 import sys
 import os
 import cv2

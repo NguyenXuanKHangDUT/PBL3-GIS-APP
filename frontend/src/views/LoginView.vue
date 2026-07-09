@@ -78,7 +78,6 @@ const handleLogin = async () => {
     const data = await response.json();
 
     if (data.success) {
-      /* LƯU TOKEN VÀ ROLE VÀO TRÌNH DUYỆT */
       localStorage.setItem('token', data.token);
       localStorage.setItem('user_role', data.data.role);
       localStorage.setItem('username', data.data.username);
@@ -88,14 +87,13 @@ const handleLogin = async () => {
       alert(data.message); 
     }
   } catch (error) {
-    console.error("Lỗi chi tiết:", error);
-    alert("Lỗi kết nối đến máy chủ!");
+    console.error("Exception:", error);
+    alert("Error connecting to the server!");
   }
 }
 </script>
 
 <style scoped>
-/* Reset & Layout chung */
 .login-container {
   display: flex;
   height: 100vh;
@@ -105,7 +103,6 @@ const handleLogin = async () => {
   overflow: hidden;
 }
 
-/* --- NỬA TRÁI (BANNER) --- */
 .login-banner {
   flex: 5;
   background: linear-gradient(135deg, #011d42 0%, #023b87 100%);
@@ -133,7 +130,7 @@ const handleLogin = async () => {
 .brand-subtitle {
   font-size: 1.4rem;
   font-weight: 400;
-  color: #4caf50; /* Xanh lá tạo điểm nhấn */
+  color: #4caf50;
   margin: 0 0 30px 0;
 }
 
@@ -163,7 +160,6 @@ const handleLogin = async () => {
   color: #4caf50;
 }
 
-/* Họa tiết mờ trang trí nền trái */
 .overlay-pattern {
   position: absolute;
   top: 0; left: 0; right: 0; bottom: 0;
@@ -173,7 +169,6 @@ const handleLogin = async () => {
   z-index: 1;
 }
 
-/* --- NỬA PHẢI (FORM) --- */
 .login-form-wrapper {
   flex: 4;
   display: flex;
@@ -258,7 +253,6 @@ const handleLogin = async () => {
   color: #aaa;
 }
 
-/* Responsive cơ bản cho màn hình nhỏ */
 @media (max-width: 900px) {
   .login-container {
     flex-direction: column;
