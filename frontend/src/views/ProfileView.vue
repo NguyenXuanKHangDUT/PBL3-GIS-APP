@@ -22,6 +22,7 @@
 
 <script setup>
 import { ref, onMounted } from 'vue'
+import { API_URL } from '@/config/env'
 
 const username = ref('')
 const role = ref('')
@@ -47,7 +48,7 @@ const handleUpdatePassword = async () => {
   }
 
   try {
-    const response = await fetch('http://localhost:5000/api/users/profile/password', {
+    const response = await fetch(`${API_URL}/api/users/profile/password`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',

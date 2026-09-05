@@ -51,6 +51,7 @@
 
 <script setup>
 import { ref, onMounted } from 'vue'
+import { API_URL } from '@/config/env'
 
 const users = ref([])
 const token = localStorage.getItem('token')
@@ -59,7 +60,7 @@ const newUser = ref({ username: '', password: '', role: 'user' })
 
 const fetchUsers = async () => {
   try {
-    const response = await fetch('http://localhost:5000/api/users', {
+    const response = await fetch(`${API_URL}/api/users`, {
       headers: { 'Authorization': `Bearer ${token}` }
     })
     const data = await response.json()
@@ -75,7 +76,7 @@ const handleAddUser = async () => {
     return
   }
   try {
-    const response = await fetch('http://localhost:5000/api/users', {
+    const response = await fetch(`${API_URL}/api/users`, {
       method: 'POST',
       headers: { 
         'Content-Type': 'application/json',
@@ -98,7 +99,7 @@ const handleAddUser = async () => {
 
 const updateRole = async (user) => {
   try {
-    const response = await fetch(`http://localhost:5000/api/users/${user.id}/role`, {
+    const response = await fetch(`${API_URL}/api/users/${user.id}/role`, {
       method: 'PUT',
       headers: { 
         'Content-Type': 'application/json',
@@ -116,7 +117,7 @@ const updateRole = async (user) => {
 const confirmDelete = async (user) => {
   if (!confirm(`Are you sure you want to delete the account '${user.username}'? This action cannot be undone.`)) return
   try {
-    const response = await fetch(`http://localhost:5000/api/users/${user.id}`, {
+    const response = await fetch(`${API_URL}/api/users/${user.id}`, {
       method: 'DELETE',
       headers: { 'Authorization': `Bearer ${token}` }
     })

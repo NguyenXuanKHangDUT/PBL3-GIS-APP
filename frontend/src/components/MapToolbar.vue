@@ -95,6 +95,7 @@
 
 <script setup>
 import { ref } from 'vue'
+import { API_URL } from '@/config/env'
 
 const props = defineProps({
   activeMode: String, 
@@ -123,7 +124,7 @@ const handleFileUpload = async (event) => {
   formData.append('geojson', file)
 
   try {
-    const response = await fetch('http://localhost:5000/api/gis/upload', {
+    const response = await fetch(`${API_URL}/api/gis/upload`, {
       method: 'POST',
       body: formData
     })

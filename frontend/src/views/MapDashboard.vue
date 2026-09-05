@@ -65,9 +65,10 @@
 
 <script setup>
 import { ref } from 'vue'
-import MapViewer from '../components/MapViewer.vue'
+import MapViewer from '@/components/MapView/MapViewer.vue'
 import MapToolbar from '../components/MapToolbar.vue'
 import LayerTools from '../components/LayerTools.vue'
+import { API_URL } from '@/config/env'
 
 const currentLayer = ref('heatmap')
 const activeMode = ref(null) 
@@ -110,7 +111,7 @@ const fetchCameraDashboard = async () => {
   showModal.value = true;
   try {
     const token = localStorage.getItem('token');
-    const res = await fetch('http://localhost:5000/api/traffic/cameras/dashboard', {
+    const res = await fetch(`${API_URL}/api/traffic/cameras/dashboard`, {
       headers: { 'Authorization': `Bearer ${token}` }
     });
     

@@ -2,7 +2,6 @@ import pool from '../config/db.js';
 import { spawn } from 'child_process';
 import path from 'path';
 
-/* Object quản lý các tiến trình đang chạy ngầm */
 export const activeCameras = {};
 export const activeSimulations = {};
 
@@ -116,7 +115,6 @@ export const startBackgroundCounter = (road_id, stream_link, coords) => {
                 if (result.cars_per_minute !== undefined) {
                     const vehicle_count = result.cars_per_minute;
                     
-                    // ĐỒNG BỘ LOGIC VỚI GEOSERVER XML
                     let density_level = 'clear';
                     if (vehicle_count >= 100) density_level = 'severe';
                     else if (vehicle_count >= 71) density_level = 'congested';

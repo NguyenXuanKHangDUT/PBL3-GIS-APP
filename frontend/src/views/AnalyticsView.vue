@@ -35,6 +35,7 @@ import {
   Chart as ChartJS, CategoryScale, LinearScale, PointElement,
   LineElement, BarElement, Title, Tooltip, Legend
 } from 'chart.js'
+import { API_URL } from '@/config/env'
 
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, BarElement, Title, Tooltip, Legend)
 
@@ -53,12 +54,12 @@ const chartOptions = {
 const fetchData = async () => {
   isLoaded.value = false
   try {
-    const resCurrent = await fetch('http://localhost:5000/api/traffic/stats/current', {
+    const resCurrent = await fetch(`${API_URL}/api/traffic/stats/current`, {
       headers: { 'Authorization': `Bearer ${token}` }
     })
     const dataCurrent = await resCurrent.json()
 
-    const resHistory = await fetch('http://localhost:5000/api/traffic/stats/history', {
+    const resHistory = await fetch(`${API_URL}/api/traffic/stats/history`, {
       headers: { 'Authorization': `Bearer ${token}` }
     })
     const dataHistory = await resHistory.json()

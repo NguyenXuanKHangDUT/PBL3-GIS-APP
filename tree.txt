@@ -1,65 +1,74 @@
-B:\GIS Project
+GIS Project
+├─backend
+│  ├─src
+│  │  ├─config
+│  │  │  └─db.js
+│  │  ├─controllers
+│  │  │  ├─authController.js
+│  │  │  ├─cameraController.js
+│  │  │  ├─gisController.js
+│  │  │  ├─trafficController.js
+│  │  │  └─userController.js
+│  │  ├─middleware
+│  │  │  └─authMiddleware.js
+│  │  ├─routes
+│  │  │  ├─authRoutes.js
+│  │  │  ├─cameraRoutes.js
+│  │  │  ├─gisRoutes.js
+│  │  │  ├─trafficRoutes.js
+│  │  │  └─userRoutes.js
+│  │  └─server.js
+│  ├─.env
+│  ├─data.json
+│  ├─importData.js
+│  ├─package-lock.json
+│  └─package.json
+├─frontend
+│  ├─public
+│  │  └─IconApp.png
+│  ├─src
+│  │  ├─assets
+│  │  │  └─icons
+│  │  │     └─camera.png
+│  │  ├─components
+│  │  │  ├─MapView
+│  │  │  │  ├─CameraStreamPopover.vue
+│  │  │  │  ├─MapViewer.vue
+│  │  │  │  ├─RoiSetupModal.vue
+│  │  │  │  └─SimulationModal.vue
+│  │  │  ├─LayerTools.vue
+│  │  │  ├─MapToolbar.vue
+│  │  │  └─Sidebar.vue
+│  │  ├─config
+│  │  │  └─env.js
+│  │  ├─router
+│  │  │  └─index.js
+│  │  ├─views
+│  │  │  ├─AnalyticsView.vue
+│  │  │  ├─LoginView.vue
+│  │  │  ├─MapDashboard.vue
+│  │  │  ├─ProfileView.vue
+│  │  │  └─UserManagement.vue
+│  │  ├─App.vue
+│  │  └─main.js
+│  ├─.env.development
+│  ├─.env.example
+│  ├─index.html
+│  ├─package-lock.json
+│  ├─package.json
+│  └─vite.config.js
+├─YOLO
+│  ├─traffic.mp4
+│  ├─yolo11n_traffic_best.pt
+│  ├─yolo11s_traffic_best.pt
+│  ├─yolo11s_traffic_best_v2.pt
+│  ├─yolo_counter.py
+│  ├─yolo_frame.py
+│  ├─yolo_simulator.py
+│  └─yolo_simulator_stream.py
+├─.gitattributes
 ├─.gitignore
 ├─mysql.sql
 ├─package-lock.json
 ├─package.json
-├─tree.txt
-├─YOLO
-|  ├─traffic.mp4
-|  ├─yolo11n_traffic_best.pt
-|  ├─yolo11s_traffic_best.pt
-|  ├─yolo11s_traffic_best_v2.pt
-|  ├─yolo_counter.py
-|  ├─yolo_frame.py
-|  ├─yolo_setup.py
-|  └─yolo_simulator.py
-├─backend
-|  ├─.env
-|  ├─data.json
-|  ├─importData.js
-|  ├─package-lock.json
-|  ├─package.json
-|  └─src
-|     ├─server.js
-|     ├─config
-|     |  └─db.js
-|     ├─controllers
-|     |  ├─authController.js
-|     |  ├─cameraController.js
-|     |  ├─gisController.js
-|     |  ├─trafficController.js
-|     |  └─userController.js
-|     ├─middleware
-|     |  └─authMiddleware.js
-|     └─routes
-|        ├─authRoutes.js
-|        ├─cameraRoutes.js
-|        ├─gisRoutes.js
-|        ├─trafficRoutes.js
-|        └─userRoutes.js
-└─frontend
-   ├─index.html
-   ├─package-lock.json
-   ├─package.json
-   ├─vite.config.js
-   ├─public
-   |  └─IconApp.png
-   └─src
-      ├─App.vue
-      ├─main.js
-      ├─assets
-      |  └─icons
-      |     └─camera.png
-      ├─components
-      |  ├─LayerTools.vue
-      |  ├─MapToolbar.vue
-      |  ├─MapViewer.vue
-      |  └─Sidebar.vue
-      ├─router
-      |  └─index.js
-      └─views
-         ├─AnalyticsView.vue
-         ├─LoginView.vue
-         ├─MapDashboard.vue
-         ├─ProfileView.vue
-         └─UserManagement.vue
+└─tree.txt
