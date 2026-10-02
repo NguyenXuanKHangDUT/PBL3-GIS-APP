@@ -1073,23 +1073,9 @@ Nginx :80
 
 # 26. Starting the Entire System
 
-After booting the Ubuntu VM, open separate SSH terminals.
+After booting the Ubuntu VM, start the services in the following order.
 
-## Terminal 1 — Backend
-
-```bash
-cd ~/traffic-gis
-
-source .venv/bin/activate
-
-cd backend
-
-npm start
-```
-
----
-
-## Terminal 2 — GeoServer
+## Terminal 1 — GeoServer
 
 ```bash
 cd /opt/geoserver/bin
@@ -1108,11 +1094,25 @@ export JAVA_OPTS="-Djava.awt.headless=true -Xms512m -Xmx1536m \
 
 ---
 
-## Nginx
+## Terminal 2 — Backend
 
-Nginx is normally started automatically because it is enabled using systemd.
+```bash
+cd ~/traffic-gis
 
-Verify:
+source .venv/bin/activate
+
+cd backend
+
+npm start
+```
+
+---
+
+## Frontend / Nginx
+
+The frontend is served by Nginx.
+
+Verify Nginx:
 
 ```bash
 sudo systemctl status nginx --no-pager
@@ -1124,6 +1124,12 @@ If necessary:
 sudo systemctl start nginx
 ```
 
+LAN URL:
+
+```text
+http://192.168.1.30
+```
+
 ---
 
 ## Terminal 3 — Cloudflare
@@ -1133,8 +1139,6 @@ cloudflared tunnel --url http://localhost:80
 ```
 
 Keep this terminal open.
-
----
 
 # 27. Quick Startup Checklist
 
