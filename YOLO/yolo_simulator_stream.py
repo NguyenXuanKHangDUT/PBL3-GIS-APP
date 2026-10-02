@@ -7,12 +7,20 @@ import time
 import threading
 from ultralytics import YOLO
 import logging
+import torch
 
 logging.getLogger("ultralytics").setLevel(logging.ERROR)
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
 MODEL_PATH = os.path.join(BASE_DIR, "yolo11s_traffic_best_v2.pt")
+
+DEVICE = 0 if torch.cuda.is_available() else "cpu"
+
+if torch.cuda.is_available():
+    DEVICE_NAME = f"GPU: {torch.cuda.get_device_name(0)}"
+else:
+    DEVICE_NAME = "CPU"
 
 CONFIDENCE_THRESHOLD = 0.30
 
@@ -262,7 +270,7 @@ def main():
                     classes=VEHICLE_CLASSES,
                     conf=CONFIDENCE_THRESHOLD,
                     imgsz=IMG_SIZE,
-                    device=0
+                    device=DEVICE
                 )
             except Exception as e:
                 send_json({

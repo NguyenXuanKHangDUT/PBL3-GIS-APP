@@ -15,3 +15,4 @@ yolo11s.pt
 # OS files
 .DS_Store
 Thumbs.db
+.venv/
